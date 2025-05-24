@@ -91,3 +91,4 @@ const proudOfThisFunc = () => {
 
 ## Acknowledgments
 
+📜 This project includes a custom license. See the LICENSE file for details.
