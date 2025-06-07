@@ -1,0 +1,90 @@
+@use 'variables' as *;
+@use '../base/typography' as *;
+
+// H1
+@mixin heading-1 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 3.5rem; // 56px
+    line-height: 3.625rem; // 58px
+    letter-spacing: 0.125rem; // 2px
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin heading-2 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 2.5rem; // 40 px
+    line-height: 2.75rem; // 44px
+    letter-spacing: 0.094rem; // 1.5px
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin heading-3 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 2.25rem;
+    letter-spacing: 0.071875rem;
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin heading-4 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1.75rem;
+    line-height: 2.375rem;
+    letter-spacing: 0.125rem;
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin heading-5 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 2.0625rem;
+    letter-spacing: 0.10625rem;
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin heading-6 {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    letter-spacing: 0.08125rem;
+    text-transform: uppercase;
+    color: $black-hex;
+}
+
+@mixin body-text {
+    font-family: $font-family;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    line-height: 1.5625rem;
+    letter-spacing: 0rem;
+    color: $black-hex;
+}
+
+@mixin overline-text {
+    font-family: $font-family;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.1875rem;
+    letter-spacing: 0.625rem;
+    color: $tangelo-hex;
+}
+
+@mixin subtitle-text {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    line-height: 1.5625rem;
+    letter-spacing: 0.0625rem;
+    color: $tangelo-hex;
+}
