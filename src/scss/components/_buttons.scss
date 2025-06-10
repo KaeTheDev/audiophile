@@ -1,0 +1,59 @@
+// 1. Import design tokens (variables, mixins, functions)
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mix;
+@use '../base/typography' as typo;
+
+
+.btn {
+  @include mix.button-base;
+  
+  // Padding for primary and outline
+  &--primary,
+  &--outline {
+    padding: 0.9375rem 1.96875rem 0.9375rem 1.96875rem; // 15px top/bottom, 31.5px left, 29.5px right
+  }
+
+  &--primary {
+    background-color: typo.$peru-hex;
+    color: typo.$white-hex;
+    border: none;
+
+    &:hover {
+      background-color: typo.$tangelo-hex;
+    }
+  }
+
+  &--outline {
+    background-color: typo.$white-hex;
+    color: typo.$black-hex;
+    border: 1.5px solid typo.$black-hex;
+
+    &:hover {
+      background-color: typo.$black-hex;
+      color: typo.$white-hex;
+    }
+  }
+
+  &--link {
+    padding: 0.25rem 0; // 4px top/bottom
+    background: none;
+    border: none;
+    color: typo.$flash-white-hex;
+
+    .btn__label {
+      margin-right: 0.25rem; // 13.32px
+    }
+
+    .btn__icon svg path {
+      stroke: typo.$tangelo-hex;
+    }
+
+    &:hover {
+      color: typo.$tangelo-hex;
+
+      .btn__icon svg path {
+        stroke: typo.$tangelo-hex;
+      }
+    }
+  }
+}
