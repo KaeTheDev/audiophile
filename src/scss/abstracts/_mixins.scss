@@ -106,3 +106,33 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
+  // Label for Text Field (like "Name")
+@mixin form-label {
+    font-family: $font-family; // assuming this is Manrope
+    font-weight: 700;
+    font-size: 0.75rem; // 12px
+    letter-spacing: -0.21px;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  // Input text + Placeholder text + Radio item name
+  @mixin form-input-text {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.875rem; // 14px
+    letter-spacing: -0.25px;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  // Number Picker value (centered)
+  @mixin form-number-value {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.75rem; // 12px
+    letter-spacing: 1px;
+    text-align: center;
+    vertical-align: top;
+  }
+  

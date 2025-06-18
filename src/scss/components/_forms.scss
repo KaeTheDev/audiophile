@@ -1,0 +1,214 @@
+// 1. Import design tokens (variables, mixins, functions)
+@use '../abstracts/variables' as vars;
+@use '../abstracts/mixins' as mix;
+@use '../base/typography' as typo;
+@use 'sass:color';
+
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+  
+    // === ✅ Text Field ===
+    &--text {
+      width: 19.3125rem; // 309px
+  
+      .form-field__label {
+        @include mix.form-label;
+        color: typo.$black-hex;
+        margin-bottom: 0.5625rem; // 9px
+      }
+  
+      .form-field__input {
+        @include mix.form-input-text;
+        height: 3.5rem; // 56px
+        padding: 1.125rem 10.875rem 1.1875rem 1.5rem; // top right bottom left
+        border: 1px solid typo.$silver-hex;
+        background: none;
+        color: typo.$black-hex;
+        border-radius: 0.5rem;
+  
+        &::placeholder {
+          color: typo.$silver-hex;
+        }
+  
+        &:focus {
+          outline: none;
+        }
+      }
+  
+      // Active state
+      &.is-active .form-field__input {
+        border-color: typo.$tangelo-hex;
+      }
+  
+      // Error state
+      &.has-error .form-field__input {
+        border-color: typo.$peru-hex;
+      }
+    }
+  
+    // === ✅ Radio Buttons (from FIRST version, the good one) ===
+    &--radio {
+          // ✅ RESET the fieldset default border + padding:
+    border: none;
+    padding: 0;
+    margin: 0;
+    min-inline-size: auto;
+
+
+      width: 19.3125rem; // 309px, matches text field
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+         // ✅ RESET legend padding too:
+    .form-field__legend {
+      @include mix.form-label; // reuse your label mixin
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      padding: 0; // remove default legend padding
+    }
+  
+      .radio-option {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        height: 3.5rem; // 56px
+        padding: 0 1rem;
+        border: 1px solid typo.$silver-hex;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: border-color 0.2s ease;
+        box-sizing: border-box;
+  
+        .radio-input {
+          display: none;
+        }
+  
+        .radio-mark {
+          width: 1.25rem; // 20px
+          height: 1.25rem;
+          border: 1px solid typo.$silver-hex;
+          border-radius: 50%;
+          position: relative;
+          transition: border-color 0.2s ease;
+          flex-shrink: 0;
+        }
+  
+        .radio-label {
+          margin-left: 1rem;
+          @include mix.form-input-text;
+          color: typo.$black-hex;
+          cursor: pointer;
+          user-select: none;
+        }
+  
+        &:hover {
+          border-color: typo.$tangelo-hex;
+  
+          .radio-mark {
+            border-color: typo.$tangelo-hex;
+          }
+        }
+  
+        .radio-input:focus + .radio-mark {
+          border-color: typo.$tangelo-hex;
+          box-shadow: 0 0 0 2px rgba(251, 175, 133, 0.2);
+        }
+  
+        .radio-input:checked + .radio-mark {
+          border-color: typo.$tangelo-hex;
+  
+          &::after {
+            content: '';
+            width: 0.625rem; // 10px
+            height: 0.625rem;
+            background: typo.$tangelo-hex;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+  
+        &:has(.radio-input:checked) {
+          border-color: typo.$tangelo-hex;
+        }
+      }
+    }
+
+  // === ✅ Number Picker (Proper BEM) ===
+  &--number {
+    width: 7.5rem; // 120px
+    height: 3rem;  // 48px
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid typo.$silver-hex;
+    border-radius: 0.5rem;
+    background: #f5f5f5; // optional subtle background
+
+    .form-field__number-btn {
+      width: 2.5rem; // ~40px
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.125rem; // 18px
+      font-weight: 400;
+      color: typo.$black-hex;
+      transition: color 0.2s ease, opacity 0.2s ease;
+      user-select: none;
+
+      &:hover:not(:disabled) {
+        color: typo.$tangelo-hex;
+      }
+
+      &:active:not(:disabled) {
+        color: color.adjust(typo.$tangelo-hex, $lightness: -10%);
+
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      &:focus-visible {
+        outline: 2px solid typo.$tangelo-hex;
+        outline-offset: -2px;
+      }
+
+      &:focus:not(:focus-visible) {
+        outline: none;
+      }
+      &:first-child {
+        border-radius: 0.5rem 0 0 0.5rem;
+      }
+
+      &:last-child {
+        border-radius: 0 0.5rem 0.5rem 0;
+      }
+    }
+
+    .form-field__number-value {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @include mix.form-input-text;
+      color: typo.$black-hex;
+      font-weight: 500;
+      background: transparent;
+      user-select: none;
+    }
+  }
+}

@@ -3,14 +3,15 @@
 @use '../abstracts/mixins' as mix;
 @use '../base/typography' as typo;
 
-
 .btn {
   @include mix.button-base;
   
   // Padding for primary and outline
   &--primary,
   &--outline {
-    padding: 0.9375rem 1.96875rem 0.9375rem 1.96875rem; // 15px top/bottom, 31.5px left, 29.5px right
+    padding: 0.9375rem 1.844rem 0.9375rem 1.96875rem; // 15px top/bottom, 31.5px left, 29.5px right
+    min-width: 160px;            // ensures button won’t get smaller than Figma width
+    height: 48px;    
   }
 
   &--primary {
@@ -38,10 +39,10 @@
     padding: 0.25rem 0; // 4px top/bottom
     background: none;
     border: none;
-    color: typo.$flash-white-hex;
+    color: typo.$silver-hex;
 
     .btn__label {
-      margin-right: 0.25rem; // 13.32px
+      margin-right: 0.833rem; // 13.32px
     }
 
     .btn__icon svg path {
