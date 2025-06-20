@@ -1,8 +1,10 @@
+// NOTE: Make the product page names easier like home, headphones, speakers, etc
+
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
-export default defineConfig({
-  base: '/audiophile/',
+export default defineConfig(({ mode }) => ({
+  base: mode === 'production' ? '/audiophile/' : '/',
   build: {
     rollupOptions: {
       input: {
@@ -20,6 +22,4 @@ export default defineConfig({
       },
     },
   },
-});
-
-// NOTE: Make the product page names easier like home, headphones, speakers, etc
+}));
