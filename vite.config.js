@@ -50,5 +50,16 @@ export default defineConfig(({ command, mode }) => {
         },
       },
     },
+    plugins: [
+      {
+        name: 'html-transform',
+        transformIndexHtml: {
+          transform(html, ctx) {
+            // Replace placeholder with actual base path
+            return html.replace(/{{BASE_URL}}/g, base);
+          }
+        }
+      }
+    ],
   };
 });
