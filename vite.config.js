@@ -21,3 +21,5 @@ export default defineConfig({
     },
   },
 });
+
+// NOTE: Make the product page names easier like home, headphones, speakers, etc

@@ -11,55 +11,123 @@
   <body>
     <div id="app"></div>
 
-
-
-    Home
-    Headphones
-    Speakers
-    Earphones
-  
-    New product
-    XX99 Mark II Headphones
-    Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.
+    <header class="navbar">
+      <nav class="navbar__container">
+        <a href="/" class="navbar__logo">audiophile</a>
     
-    See product
-  
-    Headphones
-    Shop
-  
-    Speakers
-    Shop
-  
-    Earphones
-    Shop
-  
-    ZX9 speaker
-    Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.
-    See product
-  
-    ZX7 speaker
-    See product
-  
-    YX1 earphones
-    See product
-  
-    Bringing you the best audio gear
-    Located at the heart of New York City, Audiophile is the premier store for high end headphones, 
-    earphones, speakers, and audio accessories. We have a large showroom and luxury demonstration 
-    rooms available for you to browse and experience a wide range of our products. Stop by our store 
-    to meet some of the fantastic people who make Audiophile the best place to buy your portable 
-    audio equipment.
-  
-    Home
-    Headphones
-    Speakers
-    Earphones
-  
-    Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers 
-    and sound specialists who are devoted to helping you get the most out of personal audio. Come and 
-    visit our demo facility - we’re open 7 days a week.
-  
-    Copyright 2021. All Rights Reserved
+        <!-- Mobile Toggle (hamburger) -->
+        <button class="navbar__toggle">☰</button>
+    
+        <!-- Navigation Links -->
+        <ul class="navbar__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/headphones.html">Headphones</a></li>
+          <li><a href="/speakers.html">Speakers</a></li>
+          <li><a href="/earphones.html">Earphones</a></li>
+        </ul>
+    
+        <!-- Cart Icon -->
+        <button class="navbar__cart">🛒</button>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="hero">
+        <p class="hero__overline">New Product</p>
+        <h1 class="hero__title">XX99 Mark II Headphones</h1>
+        <p class="hero__description">
+          Experience natural, lifelike audio and exceptional build quality.
+        </p>
+        <button class="button button--primary">See Product</button>
+      </section>
+    <!--Categories Section-->
+      <section class="categories">
+        <article class="category-card category-card--headphones">
+          <h2 class="category-card__title">Headphones</h2>
+          <a href="/headphones.html">
+            <button class="button button--secondary">Shop</button>
+          </a>
+        </article>
+    
+        <article class="category-card category-card--speakers">
+          <h2 class="category-card__title">Speakers</h2>
+          <a href="/speakers.html">
+            <button class="button button--secondary">Shop</button>
+          </a>
+        </article>
+    
+        <article class="category-card category-card--earphones">
+          <h2 class="category-card__title">Earphones</h2>
+          <a href="/earphones.html">
+            <button class="button button--secondary">Shop</button>
+          </a>
+        </article>
+      </section>
+    
+      <section class="featured-products">
+        <article class="product-highlight product-highlight--zx9">
+          <h2 class="product-highlight__title">ZX9 Speaker</h2>
+          <p class="product-highlight__description">
+            Upgrade to premium speakers that deliver truly remarkable sound.
+          </p>
+          <a href="/speakers.html">
+            <button class="button button--primary">See Product</button>
+          </a>
+        </article>
+    
+        <article class="product-highlight product-highlight--zx7">
+          <h2 class="product-highlight__title">ZX7 Speaker</h2>
+          <a href="/speakers.html">
+            <button class="button button--primary">See Product</button>
+          </a>
+        </article>
+    
+        <article class="product-highlight product-highlight--yx1">
+          <h2 class="product-highlight__title">YX1 Earphones</h2>
+          <a href="/earphones.html">
+            <button class="button button--primary">See Product</button>
+          </a>
+        </article>
+      </section>
+    
+      <section class="about">
+        <h2 class="about__title">Bringing you the <span>best</span> audio gear</h2>
+        <p class="about__description">
+          Located at the heart of New York City, Audiophile is the premier
+          store for high-end headphones, earphones, speakers, and audio
+          accessories. We have a large showroom and luxury demonstration
+          rooms available for you to browse and experience a wide range of
+          our products. Stop by our store to meet some of the fantastic
+          people who make Audiophile the best place to buy your portable
+          audio equipment.
+        </p>
+      </section>
+    </main>
+    
+    <footer class="footer">
+      <nav class="footer__nav">
+        <a href="/" class="footer__logo">audiophile</a>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/headphones.html">Headphones</a></li>
+          <li><a href="/speakers.html">Speakers</a></li>
+          <li><a href="/earphones.html">Earphones</a></li>
+        </ul>
+      </nav>
+      <p class="footer__description">
+        Audiophile is an all-in-one stop to fulfill your audio needs.
+        We're a small team of music lovers and sound specialists who are
+        devoted to helping you get the most out of personal audio.
+        Come and visit our demo facility — we’re open 7 days a week.
+      </p>
+      <p class="footer__copyright">Copyright 2025. All Rights Reserved</p>
+      <div class="footer__social-icons">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+    
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
