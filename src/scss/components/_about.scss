@@ -1,0 +1,38 @@
+.about {
+    padding: 4rem 1rem;
+    background-color: #f2f2f2;
+    text-align: center;
+  
+    &__container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 2rem;
+  
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+        align-items: center;
+      }
+    }
+  
+    &__title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+  
+      span {
+        color: #d87d4a; // Accent color
+      }
+    }
+  
+    &__description {
+      color: #666;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  
+    &__image {
+      width: 100%;
+      border-radius: 0.5rem;
+    }
+  }

@@ -11,7 +11,7 @@ export function Navbar() {
           <li><a href="./speakers.html">Speakers</a></li>
           <li><a href="./earphones.html">Earphones</a></li>
         </ul>
-        <button class="navbar__cart">🛒</button>
+        <button id="cart-toggle" class="navbar__cart">🛒</button>
       </nav>
     `;
     return nav;

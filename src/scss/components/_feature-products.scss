@@ -1,0 +1,41 @@
+.featured-products {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 1rem;
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .product-highlight {
+      background: #f1f1f1;
+      padding: 2rem;
+      border-radius: 1rem;
+      text-align: center;
+  
+      &--zx9 {
+        background-color: #d87d4a;
+        color: white;
+      }
+  
+      &--zx7 {
+        background-color: #f1f1f1;
+      }
+  
+      &--yx1 {
+        background-color: #eaeaea;
+      }
+  
+      &__title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+  
+      &__description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
