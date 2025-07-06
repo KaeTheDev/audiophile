@@ -1,0 +1,131 @@
+.order-confirmation {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  
+    &__icon {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 1.5rem;
+    }
+  
+    &__title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+  
+    &__message {
+      color: #888;
+      margin-bottom: 2rem;
+      font-size: 1rem;
+    }
+  
+    &__summary {
+      display: flex;
+      flex-direction: column;
+      background-color: #f1f1f1;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      margin-bottom: 2rem;
+  
+      @media (min-width: 768px) {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  
+    &__summary-left {
+      padding: 1.5rem;
+      flex: 1;
+      border-bottom: 1px solid #ddd;
+  
+      @media (min-width: 768px) {
+        border-bottom: none;
+        border-right: 1px solid #ddd;
+      }
+    }
+  
+    &__summary-right {
+      background-color: #000;
+      color: white;
+      padding: 1.5rem;
+      text-align: left;
+  
+      & > .order-confirmation__grand-label {
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        margin-bottom: 0.5rem;
+      }
+  
+      & > .order-confirmation__grand-amount {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+    }
+  
+    &__item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+  
+      &-left {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+  
+      &-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 0.5rem;
+        object-fit: cover;
+      }
+  
+      &-details {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+      }
+  
+      &-name {
+        font-weight: 700;
+      }
+  
+      &-price,
+      &-qty {
+        font-size: 0.875rem;
+        color: #777;
+      }
+    }
+  
+    &__divider {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 1rem 0;
+    }
+  
+    &__more {
+      font-size: 0.875rem;
+      color: #777;
+    }
+  
+    &__button {
+      display: inline-block;
+      text-decoration: none;
+      padding: 1rem 2rem;
+      background-color: #d87d4a;
+      color: white;
+      text-transform: uppercase;
+      font-weight: bold;
+      border-radius: 0.5rem;
+  
+      &:hover {
+        background-color: #fbaf85;
+      }
+    }
+  }
