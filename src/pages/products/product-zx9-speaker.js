@@ -27,7 +27,7 @@ const product = {
       'images/product-zx9-gallery-2.jpg',
       'images/product-zx9-gallery-3.jpg',
     ],
-    recommendations: [
+    others: [
       { name: 'ZX7 Speaker', slug: 'zx7-speaker', image: 'images/zx7.jpg' },
       { name: 'XX99 Mark I', slug: 'xx99-mark-one-headphones', image: 'images/xx99-mark-one.jpg' },
       { name: 'XX59', slug: 'xx59-headphones', image: 'images/xx59.jpg' },
