@@ -1,1 +1,0 @@
-async function o(){try{const t=await fetch("/audiophile/data.json");if(!t.ok)throw new Error(`HTTP error! status: ${t.status}`);return await t.json()}catch(t){throw console.error("❌ Failed to fetch product data:",t),t}}function r(){return window.location.pathname.split("/").pop().replace("product-","").replace(".html","")}export{o as f,r as g};

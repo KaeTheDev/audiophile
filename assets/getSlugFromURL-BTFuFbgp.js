@@ -24,10 +24,10 @@ function c(e){const t=document.createElement("section");return t.classList.add("
         <button class="add-to-cart-button">Add to Cart</button>
       </div>
     </div>
-  `,t}function i(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
+  `,t}function o(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
     <h2>Features</h2>
     <p>${e.features.replace(/\n\n/g,"</p><p>")}</p>
-  `,t}function o(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
+  `,t}function i(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
       <h2>In the Box</h2>
       <ul>
         ${e.includes.map(a=>`
@@ -60,4 +60,4 @@ function c(e){const t=document.createElement("section");return t.classList.add("
             </div>
           `).join("")}
       </div>
-    `,t}export{c as P,i as a,o as b,l as c,r as d};
+    `,t}function d(){return window.location.pathname.split("/").pop().replace("product-","").replace(".html","")}export{c as P,o as a,i as b,l as c,r as d,d as g};
