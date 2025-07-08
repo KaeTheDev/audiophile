@@ -10,7 +10,7 @@ export default defineConfig({
         headphones: resolve(__dirname, 'headphones.html'),
         speakers: resolve(__dirname, 'speakers.html'),
         earphones: resolve(__dirname, 'earphones.html'),
-        'product-earphones': resolve(__dirname, 'product-earphones.html'),
+        'product-earphones': resolve(__dirname, 'product-yx1-earphones.html'),
         'product-xx59-headphones': resolve(__dirname, 'product-xx59-headphones.html'),
         'product-xx99-mark-one-headphones': resolve(__dirname, 'product-xx99-mark-one-headphones.html'),
         'product-xx99-mark-two-headphones': resolve(__dirname, 'product-xx99-mark-two-headphones.html'),
