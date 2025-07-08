@@ -1,4 +1,4 @@
-function n(e){const t=document.createElement("section");return t.classList.add("product-detail"),t.innerHTML=`
+function c(e){const t=document.createElement("section");return t.classList.add("product-detail"),t.innerHTML=`
     <div class="product-detail__image-container">
       <img 
         src="${e.image}" 
@@ -24,10 +24,10 @@ function n(e){const t=document.createElement("section");return t.classList.add("
         <button class="add-to-cart-button">Add to Cart</button>
       </div>
     </div>
-  `,t}function o(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
+  `,t}function i(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
     <h2>Features</h2>
     <p>${e.features.replace(/\n\n/g,"</p><p>")}</p>
-  `,t}function i(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
+  `,t}function o(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
       <h2>In the Box</h2>
       <ul>
         ${e.includes.map(a=>`
@@ -37,7 +37,7 @@ function n(e){const t=document.createElement("section");return t.classList.add("
               </li>
             `).join("")}
       </ul>
-    `,t}function l(e){console.log("is this being called at all?");const t=document.createElement("section");t.className="product-gallery";const[a,s,c]=e.gallery;return t.innerHTML=`
+    `,t}function l(e){const t=document.createElement("section");t.className="product-gallery";const{first:a,second:s,third:n}=e.gallery;return t.innerHTML=`
       <div class="product-gallery__item">
         <img class="product-gallery__image" src="${a}" alt="${e.name} gallery image 1">
       </div>
@@ -45,18 +45,14 @@ function n(e){const t=document.createElement("section");return t.classList.add("
         <img class="product-gallery__image" src="${s}" alt="${e.name} gallery image 2">
       </div>
       <div class="product-gallery__item">
-        <img class="product-gallery__image" src="${c}" alt="${e.name} gallery image 3">
+        <img class="product-gallery__image" src="${n}" alt="${e.name} gallery image 3">
       </div>
     `,t}function r(e){const t=document.createElement("section");return t.className="product-recommendations",t.innerHTML=`
       <h2 class="product-recommendations__title">You may also like</h2>
       <div class="product-recommendations__list">
-        ${e.recommendations.map(a=>`
+        ${e.others.map(a=>`
             <div class="product-recommendations__card">
-              <img 
-                src="/assets/product-${a.slug}/mobile/image-category-page-preview.jpg" 
-                alt="${a.name}" 
-                class="product-recommendations__image"
-              />
+            <img src="${a.image.mobile}" alt="${a.name}" />
               <h3 class="product-recommendations__name">${a.name}</h3>
               <a href="./product-${a.slug}.html">
                 <button class="product-recommendations__button button">See Product</button>
@@ -64,4 +60,4 @@ function n(e){const t=document.createElement("section");return t.classList.add("
             </div>
           `).join("")}
       </div>
-    `,t}export{n as P,o as a,i as b,l as c,r as d};
+    `,t}export{c as P,i as a,o as b,l as c,r as d};
