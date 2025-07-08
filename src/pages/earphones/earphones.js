@@ -1,22 +1,21 @@
-import { ProductCard } from "../../components/product-card/product-card";
+import { ProductCard } from "../../components/product-card/product-card.js";
+import { fetchProductData } from "../../utils/fetchData.js";
 
-export const earphonesData = [
-    {
-      name: 'YX1 Wireless Earphones',
-      slug: 'yx1-earphones',
-      image: 'images/yx1.jpg',
-      alt: 'YX1 Wireless Earphones',
-      isNew: true,
-      description:
-        'Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.',
-    }
-  ];
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    const productList = document.querySelector('#product-list');
-  
-    earphonesData.forEach(product => {
-      const card = ProductCard(product);
-      productList.appendChild(card);
+document.addEventListener("DOMContentLoaded", () => {
+  const productList = document.querySelector("#product-list");
+
+  fetchProductData()
+    .then((data) => {
+      // 🔍 Filter for only earphones
+      const earphones = data.filter((product) => product.category === "earphones");
+
+      // ✅ Render each earphone product
+      earphones.forEach((product) => {
+        const card = ProductCard(product);
+        productList.appendChild(card);
+      });
+    })
+    .catch((error) => {
+      console.error("❌ Failed to load earphones:", error);
     });
-  });
+});

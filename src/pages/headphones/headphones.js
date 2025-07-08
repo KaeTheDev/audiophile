@@ -1,34 +1,21 @@
 import { ProductCard } from "../../components/product-card/product-card.js";
+import { fetchProductData } from "../../utils/fetchData.js";
 
-const products = [
-    {
-      name: 'XX99 Mark II Headphones',
-      description: 'The pinnacle of pristine audio. Reproduces the balanced depth and precision of studio-quality sound.',
-      image: './images/xx99-mark-two.jpg',
-      slug: 'xx99-mark-two',
-      isNew: true
-    },
-    {
-      name: 'XX99 Mark I Headphones',
-      description: 'Classic headphones offering detailed and accurate audio for audiophiles and sound professionals.',
-      image: './images/xx99-mark-one.jpg',
-      slug: 'xx99-mark-one',
-      isNew: false
-    },
-    {
-      name: 'XX59 Headphones',
-      description: 'Versatile wireless headset for music on the go. Stylish, durable, and customizable audio experience.',
-      image: './images/xx59.jpg',
-      slug: 'xx59',
-      isNew: false
-    }
-  ];
+document.addEventListener("DOMContentLoaded", () => {
+  const productList = document.querySelector("#product-list");
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const productList = document.querySelector('#product-list');
-  
-    products.forEach(product => {
-      const card = ProductCard(product);
-      productList.appendChild(card);
-    });
+  fetchProductData()
+  .then((data) => {
+        // 🔍 Filter for only headphones
+        const headphones = data.filter((product) => product.category === "headphones");
+
+         // ✅ Render each headphone product
+        headphones.forEach((product) => {
+          const card = ProductCard(product);
+          productList.appendChild(card);
+        });
+  })
+  .catch((error) => {
+    console.error("❌ Failed to load headphones:", error);
   });
+});
