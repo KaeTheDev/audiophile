@@ -20,4 +20,3 @@ export const earphonesData = [
       productList.appendChild(card);
     });
   });
-

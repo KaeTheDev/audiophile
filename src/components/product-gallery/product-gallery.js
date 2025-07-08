@@ -1,11 +1,8 @@
 export function ProductGallery(product) {
-    console.log("is this being called at all?");
     const section = document.createElement('section');
     section.className = 'product-gallery';
   
-    const [first, second, third] = product.gallery;
-
-  
+    const {first, second, third} = product.gallery;
   
     section.innerHTML = `
       <div class="product-gallery__item">
