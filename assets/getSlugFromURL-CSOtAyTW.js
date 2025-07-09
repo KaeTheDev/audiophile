@@ -1,4 +1,7 @@
-function c(e){const t=document.createElement("section");return t.classList.add("product-detail"),t.innerHTML=`
+function c({label:e,variant:t="primary",icon:a=""}){const n=document.createElement("button");return n.className=`btn btn--${t}`,n.type="button",n.innerHTML=`
+    <span class="btn__label">${e}</span>
+    ${a?`<span class="btn__icon">${a}</span>`:""}
+  `,n}function o(e){const t=document.createElement("section");t.classList.add("product-detail"),t.innerHTML=`
     <div class="product-detail__image-container">
       <img 
         src="${e.image}" 
@@ -19,15 +22,15 @@ function c(e){const t=document.createElement("section");return t.classList.add("
           <span class="quantity-selector__value">1</span>
           <button class="quantity-selector__btn">+</button>
         </div>
-
-        <!-- 🛒 Add to Cart Button -->
-        <button class="add-to-cart-button">Add to Cart</button>
+        
+        <!-- Placeholder for Add to Cart Button -->
+        <div class="product-detail__add-to-cart"></div>
       </div>
     </div>
-  `,t}function o(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
+  `;const a=c({label:"Add to Cart"});return a.addEventListener("click",()=>{console.log("🛒 Add to Cart clicked!")}),t.querySelector(".product-detail__add-to-cart").appendChild(a),t}function i(e){const t=document.createElement("div");return t.className="product-features__text",t.innerHTML=`
     <h2>Features</h2>
     <p>${e.features.replace(/\n\n/g,"</p><p>")}</p>
-  `,t}function i(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
+  `,t}function l(e){const t=document.createElement("div");return t.className="product-features__box",t.innerHTML=`
       <h2>In the Box</h2>
       <ul>
         ${e.includes.map(a=>`
@@ -37,17 +40,17 @@ function c(e){const t=document.createElement("section");return t.classList.add("
               </li>
             `).join("")}
       </ul>
-    `,t}function l(e){const t=document.createElement("section");t.className="product-gallery";const{first:a,second:s,third:n}=e.gallery;return t.innerHTML=`
+    `,t}function r(e){const t=document.createElement("section");t.className="product-gallery";const{first:a,second:n,third:s}=e.gallery;return t.innerHTML=`
       <div class="product-gallery__item">
         <img class="product-gallery__image" src="${a}" alt="${e.name} gallery image 1">
       </div>
       <div class="product-gallery__item">
-        <img class="product-gallery__image" src="${s}" alt="${e.name} gallery image 2">
+        <img class="product-gallery__image" src="${n}" alt="${e.name} gallery image 2">
       </div>
       <div class="product-gallery__item">
-        <img class="product-gallery__image" src="${n}" alt="${e.name} gallery image 3">
+        <img class="product-gallery__image" src="${s}" alt="${e.name} gallery image 3">
       </div>
-    `,t}function r(e){const t=document.createElement("section");return t.className="product-recommendations",t.innerHTML=`
+    `,t}function d(e){const t=document.createElement("section");return t.className="product-recommendations",t.innerHTML=`
       <h2 class="product-recommendations__title">You may also like</h2>
       <div class="product-recommendations__list">
         ${e.others.map(a=>`
@@ -60,4 +63,4 @@ function c(e){const t=document.createElement("section");return t.classList.add("
             </div>
           `).join("")}
       </div>
-    `,t}function d(){return window.location.pathname.split("/").pop().replace("product-","").replace(".html","")}export{c as P,o as a,i as b,l as c,r as d,d as g};
+    `,t}function u(){return window.location.pathname.split("/").pop().replace("product-","").replace(".html","")}export{o as P,i as a,l as b,r as c,d,u as g};

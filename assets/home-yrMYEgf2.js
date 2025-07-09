@@ -1,11 +1,11 @@
-import"./footer-C0Dips3J.js";import"./base-UJhTV_Nj.js";function r(){const t=document.createElement("section");return t.className="hero",t.innerHTML=`
+import"./footer-C0Dips3J.js";import{f as s,P as c,A as n}from"./fetchData-DdJ2I0UE.js";function h(){const t=document.createElement("section");return t.className="hero",t.innerHTML=`
       <p class="hero__overline">New Product</p>
       <h1 class="hero__title">XX99 Mark II Headphones</h1>
       <p class="hero__description">
         Experience natural, lifelike audio and exceptional build quality.
       </p>
       <button class="button button--primary">See Product</button>
-    `,t}function o(){const t=document.createElement("section");return t.className="featured-products",t.innerHTML=`
+    `,t}function l(){const t=document.createElement("section");return t.className="featured-products",t.innerHTML=`
       <article class="product-highlight product-highlight--zx9">
         <h2 class="product-highlight__title">ZX9 Speaker</h2>
         <p class="product-highlight__description">
@@ -29,4 +29,4 @@ import"./footer-C0Dips3J.js";import"./base-UJhTV_Nj.js";function r(){const t=doc
           <button class="button button--primary">See Product</button>
         </a>
       </article>
-    `,t}document.addEventListener("DOMContentLoaded",()=>{const t=document.querySelector("#page");if(t){const e=t.querySelector(".product-categories");e?t.insertBefore(r(),e):t.prepend(r()),t.insertBefore(o(),t.querySelector(".about")||null)}});
+    `,t}document.addEventListener("DOMContentLoaded",async()=>{const t=document.querySelector("#page");if(!t)return;const r=await s(),a=["headphones","speakers","earphones"].map(e=>{const o=r.find(i=>i.category===e);return{name:e.charAt(0).toUpperCase()+e.slice(1),image:o.categoryImage,link:`/${e}.html`}});t.appendChild(h()),t.appendChild(c(a)),t.appendChild(l()),t.appendChild(n())});

@@ -1,1 +1,0 @@
-import"./footer-C0Dips3J.js";import"./base-UJhTV_Nj.js";async function e(){try{const t=await fetch("/audiophile/data.json");if(!t.ok)throw new Error(`HTTP error! status: ${t.status}`);return await t.json()}catch(t){throw console.error("❌ Failed to fetch product data:",t),t}}export{e as f};
