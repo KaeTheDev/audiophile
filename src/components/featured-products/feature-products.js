@@ -1,32 +1,42 @@
+import { createButton } from '../button/button';
+
 export function FeaturedProducts() {
-    const section = document.createElement('section');
-    section.className = 'featured-products';
-  
-    section.innerHTML = `
-      <article class="product-highlight product-highlight--zx9">
-        <h2 class="product-highlight__title">ZX9 Speaker</h2>
-        <p class="product-highlight__description">
-          Upgrade to premium speakers that deliver truly remarkable sound.
-        </p>
-        <a href="./speakers.html">
-          <button class="button button--primary">See Product</button>
-        </a>
-      </article>
-  
-      <article class="product-highlight product-highlight--zx7">
-        <h2 class="product-highlight__title">ZX7 Speaker</h2>
-        <a href="./speakers.html">
-          <button class="button button--primary">See Product</button>
-        </a>
-      </article>
-  
-      <article class="product-highlight product-highlight--yx1">
-        <h2 class="product-highlight__title">YX1 Earphones</h2>
-        <a href="./earphones.html">
-          <button class="button button--primary">See Product</button>
-        </a>
-      </article>
+  const section = document.createElement('section');
+  section.className = 'featured-products';
+
+  function createProductHighlight(title, href, modifier, extraDescription = '') {
+    const article = document.createElement('article');
+    article.className = `product-highlight product-highlight--${modifier}`;
+
+    article.innerHTML = `
+      <h2 class="product-highlight__title">${title}</h2>
+      ${extraDescription ? `<p class="product-highlight__description">${extraDescription}</p>` : ''}
     `;
-  
-    return section;
+
+    const link = document.createElement('a');
+    link.href = href;
+    link.appendChild(createButton({ label: 'See Product', variant: 'outline' }));
+    article.appendChild(link);
+
+    return article;
   }
+
+  section.appendChild(
+    createProductHighlight(
+      'ZX9 Speaker',
+      './product-zx9-speaker.html',
+      'zx9',
+      'Upgrade to premium speakers that deliver truly remarkable sound.'
+    )
+  );
+
+  section.appendChild(
+    createProductHighlight('ZX7 Speaker', './product-zx7-speaker.html', 'zx7')
+  );
+
+  section.appendChild(
+    createProductHighlight('YX1 Earphones', './product-yx1-earphones.html', 'yx1')
+  );
+
+  return section;
+}

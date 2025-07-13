@@ -80,104 +80,85 @@ export function createRadioGroup({ name, legend = '', options = [] }) {
   return fieldset;
 }
 
-  export function createNumberPicker({ id, min = 1, max = 10, initial = 1, name }) {
-    // ✅ Semantic container
-    const wrapper = document.createElement('div');
-    wrapper.className = 'form-field form-field--number';
-    wrapper.id = id;
-    wrapper.setAttribute('role', 'group');
-    wrapper.setAttribute('aria-label', 'Number picker');
+  export function createNumberPicker({
+  id,
+  min = 1,
+  max = 10,
+  initial = 1,
+  name,
+  onChange,                 // ← ① accept callback
+}) {
+  const wrapper = document.createElement('div');
+  wrapper.className = 'form-field form-field--number';
+  wrapper.id = id;
+  wrapper.setAttribute('role', 'group');
+  wrapper.setAttribute('aria-label', 'Number picker');
+
+  const decrementBtn = document.createElement('button');
+  decrementBtn.className = 'form-field__number-btn';
+  decrementBtn.type = 'button';
+  decrementBtn.textContent = '−';
+
+  const hiddenInput = document.createElement('input');
+  hiddenInput.type = 'hidden';
+  hiddenInput.name = name || id;
+  hiddenInput.value = initial;
+
+  const valueDisplay = document.createElement('div');
+  valueDisplay.className = 'form-field__number-value';
+  valueDisplay.textContent = initial;
+
+  const incrementBtn = document.createElement('button');
+  incrementBtn.className = 'form-field__number-btn';
+  incrementBtn.type = 'button';
+  incrementBtn.textContent = '+';
+
+  // ---------------------------
+  //  State & updater
+  // ---------------------------
+  let currentValue = initial;
+
+  function updateValue(newValue, triggerChange = true) {
+    currentValue = newValue;
+    valueDisplay.textContent = currentValue;
+    hiddenInput.value = currentValue;
   
-    // ✅ Semantic button elements with proper accessibility
-    const decrementBtn = document.createElement('button');
-    decrementBtn.className = 'form-field__number-btn';
-    decrementBtn.type = 'button';
-    decrementBtn.textContent = '−';
-    decrementBtn.setAttribute('aria-label', 'Decrease value');
-    decrementBtn.setAttribute('tabindex', '0');
+    decrementBtn.disabled = currentValue <= min;
+    incrementBtn.disabled = currentValue >= max;
   
-    // ✅ Hidden input for form submission + visible display
-    const hiddenInput = document.createElement('input');
-    hiddenInput.type = 'hidden';
-    hiddenInput.name = name || id;
-    hiddenInput.value = initial;
+    hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
   
-    // ✅ Semantic display element (not an input since it's not editable)
-    const valueDisplay = document.createElement('div');
-    valueDisplay.className = 'form-field__number-value';
-    valueDisplay.textContent = initial;
-    valueDisplay.setAttribute('role', 'status');
-    valueDisplay.setAttribute('aria-live', 'polite');
-    valueDisplay.setAttribute('aria-label', `Current value: ${initial}`);
-  
-    const incrementBtn = document.createElement('button');
-    incrementBtn.className = 'form-field__number-btn';
-    incrementBtn.type = 'button';
-    incrementBtn.textContent = '+';
-    incrementBtn.setAttribute('aria-label', 'Increase value');
-    incrementBtn.setAttribute('tabindex', '0');
-  
-    // ✅ State management
-    let currentValue = initial;
-  
-    const updateValue = (newValue) => {
-      currentValue = newValue;
-      valueDisplay.textContent = currentValue;
-      valueDisplay.setAttribute('aria-label', `Current value: ${currentValue}`);
-      hiddenInput.value = currentValue;
-      
-      // Update button states
-      decrementBtn.disabled = currentValue <= min;
-      incrementBtn.disabled = currentValue >= max;
-      
-      // Dispatch change event for form compatibility
-      hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
-    };
-  
-    // ✅ Event handlers
-    decrementBtn.addEventListener('click', () => {
-      if (currentValue > min) {
-        updateValue(currentValue - 1);
-      }
-    });
-  
-    incrementBtn.addEventListener('click', () => {
-      if (currentValue < max) {
-        updateValue(currentValue + 1);
-      }
-    });
-  
-    // ✅ Keyboard support
-    decrementBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        decrementBtn.click();
-      }
-    });
-  
-    incrementBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        incrementBtn.click();
-      }
-    });
-  
-    // ✅ Initialize button states
-    updateValue(initial);
-  
-    // ✅ Build structure
-    wrapper.appendChild(decrementBtn);
-    wrapper.appendChild(valueDisplay);
-    wrapper.appendChild(incrementBtn);
-    wrapper.appendChild(hiddenInput); // Hidden input for form submission
-  
-    // ✅ Public API
-    wrapper.getValue = () => currentValue;
-    
-    wrapper.setValue = (newValue) => {
-      const clampedValue = Math.max(min, Math.min(max, Number(newValue)));
-      updateValue(clampedValue);
-    };
-  
-    return wrapper;
+    if (triggerChange && typeof onChange === 'function') onChange(currentValue);
   }
+  
+  // ---------------------------
+  //  Event handlers
+  // ---------------------------
+  decrementBtn.addEventListener('click', () => {
+    if (currentValue > min) updateValue(currentValue - 1, true);
+  });
+  
+  incrementBtn.addEventListener('click', () => {
+    if (currentValue < max) updateValue(currentValue + 1, true);
+  });
+  
+  // Initial setup (no onChange)
+  updateValue(initial, false);
+  
+
+  // init
+// init without triggering onChange
+currentValue = initial;
+valueDisplay.textContent = currentValue;
+hiddenInput.value = currentValue;
+decrementBtn.disabled = currentValue <= min;
+incrementBtn.disabled = currentValue >= max;
+
+
+  // public API
+  wrapper.getValue = () => currentValue;
+  wrapper.setValue = v => updateValue(Math.max(min, Math.min(max, v)));
+
+  wrapper.append(decrementBtn, valueDisplay, incrementBtn, hiddenInput);
+  return wrapper;
+}
