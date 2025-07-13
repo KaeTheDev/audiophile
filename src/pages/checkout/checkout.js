@@ -1,44 +1,44 @@
-import { CheckoutForm } from '../../components/checkout/checkout-form.js';
-import { OrderSummary } from '../../components/checkout/order-summary.js';
-import { OrderConfirmation } from '../../components/checkout/order-confirmation.js';
+import { CheckoutForm }       from '../../components/checkout/checkout-form.js';
+import { OrderSummary }       from '../../components/checkout/order-summary.js';
+import { OrderConfirmation }  from '../../components/checkout/order-confirmation.js';
+
+import { getState, clearCart } from '../../store/cartStore.js';
+import { validateForm }        from '../../utils/validateForm.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const checkoutFormContainer = document.querySelector('#checkout-form');
-  const orderSummaryContainer = document.querySelector('#order-summary');
-  const confirmationContainer = document.querySelector('#order-confirmation');
+  /* DOM slots */
+  const formSlot   = document.querySelector('#checkout-form');
+  const summarySlot= document.querySelector('#order-summary');
+  const confirmSlot= document.querySelector('#order-confirmation');
 
-  // Render Checkout Form
-  if (checkoutFormContainer) {
-    checkoutFormContainer.appendChild(CheckoutForm());
+  /* 1️⃣  Mount the checkout form */
+  const formComponent = CheckoutForm();
+  formSlot?.appendChild(formComponent);
+
+  /* 2️⃣  Mount the live order summary */
+  const summaryComponent = OrderSummary(handleSubmit);
+  summarySlot?.appendChild(summaryComponent);
+
+  /* --------------- Submit handler --------------- */
+  function handleSubmit() {
+    const formEl = formComponent.querySelector('form');
+    if (!validateForm(formEl)) return;            // HTML5 validity + custom helper
+
+    // Build order object from cart
+    const { items, total } = getState();
+    if (items.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
+    const order = { items, total };
+
+    // Swap UI to confirmation modal
+    formSlot.style.display    = 'none';
+    summarySlot.style.display = 'none';
+    confirmSlot.innerHTML     = '';
+    confirmSlot.appendChild(OrderConfirmation(order));
+
+    // Clear the cart for next session
+    clearCart();
   }
-
-  // Render Order Summary
-  if (orderSummaryContainer) {
-    orderSummaryContainer.appendChild(OrderSummary());
-  }
-
-  // 🔧 TEMP: Render Confirmation (for testing layout)
-  const mockOrder = {
-    items: [
-      {
-        name: 'XX99 MK II',
-        price: 2999,
-        quantity: 1,
-        image: 'images/xx99-mark-two.jpg'
-      },
-      {
-        name: 'ZX9 Speaker',
-        price: 4500,
-        quantity: 1,
-        image: 'images/zx9.jpg'
-      }
-    ],
-    total: 5499
-  };
-
-  if (confirmationContainer) {
-    confirmationContainer.appendChild(OrderConfirmation(mockOrder));
-  }
-
-  // 🔜 Later you’ll remove that and trigger OrderConfirmation on form submission
 });

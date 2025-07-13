@@ -11,23 +11,23 @@ export function OrderConfirmation(order) {
 
     <div class="order-confirmation__summary">
       <div class="order-confirmation__summary-left">
-        <div class="order-confirmation__item">
-          <div class="order-confirmation__item-left">
-            <img src="${order.items[0].image}" alt="${order.items[0].name}" class="order-confirmation__item-img" />
-            <div class="order-confirmation__item-details">
-              <p class="order-confirmation__item-name">${order.items[0].name}</p>
-              <p class="order-confirmation__item-price">$${order.items[0].price}</p>
+        ${order.items.map((item, idx) => idx === 0 ? `
+          <div class="order-confirmation__item">
+            <div class="order-confirmation__item-left">
+              <img src="${item.image}" alt="${item.name}" class="order-confirmation__item-img" />
+              <div class="order-confirmation__item-details">
+                <p class="order-confirmation__item-name">${item.name}</p>
+                <p class="order-confirmation__item-price">$${item.price}</p>
+              </div>
             </div>
+            <p class="order-confirmation__item-qty">x${item.qty}</p>
           </div>
-          <p class="order-confirmation__item-qty">x${order.items[0].quantity}</p>
-        </div>
+        ` : '').join('')}
 
-        ${
-          order.items.length > 1
-            ? `<hr class="order-confirmation__divider" />
-               <p class="order-confirmation__more">and ${order.items.length - 1} other item(s)</p>`
-            : ''
-        }
+        ${order.items.length > 1 
+          ? `<hr class="order-confirmation__divider" />
+             <p class="order-confirmation__more">and ${order.items.length - 1} other item(s)</p>`
+          : ''}
       </div>
 
       <div class="order-confirmation__summary-right">
@@ -39,14 +39,9 @@ export function OrderConfirmation(order) {
     <div class="order-confirmation__button-container"></div>
   `;
 
-  // ✅ Create and insert the primary button
   const button = createButton({ label: 'Back to Home', variant: 'primary' });
-  button.addEventListener('click', () => {
-    window.location.href = '/';
-  });
-
-  const container = div.querySelector('.order-confirmation__button-container');
-  container.appendChild(button);
+  button.addEventListener('click', () => (window.location.href = '/'));
+  div.querySelector('.order-confirmation__button-container').appendChild(button);
 
   return div;
 }

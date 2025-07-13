@@ -1,37 +1,50 @@
 import './scss/styles.scss';
-
-import { Navbar } from './components/navbar/navbar.js';
-import { Footer } from './components/footer/footer.js';
 import { CheckoutForm } from './components/checkout/checkout-form.js';
 import { OrderSummary } from './components/checkout/order-summary.js';
 import { OrderConfirmation } from './components/checkout/order-confirmation.js';
+import { getState, clearCart } from './store/cartStore.js';
+import { validateForm } from './utils/validateForm.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  const app = document.querySelector('#app');
-  const footer = document.querySelector('#footer');
+/* mount slots */
+const formSlot    = document.querySelector('#checkout-form');
+const summarySlot = document.querySelector('#order-summary');
 
-  if (app) app.append(Navbar());
-  if (footer) footer.append(Footer());
+/* overlay root for modal */
+let overlay = document.querySelector('#order-confirmation');
+if (!overlay) {
+  overlay = document.createElement('div');
+  overlay.id = 'order-confirmation';
+  overlay.className = 'order-confirmation-overlay'; // position:fixed; top:0; …
+  document.body.appendChild(overlay);
+}
 
-  // Inject components into pre-defined containers
-  const formSlot = document.querySelector('#checkout-form');
-  const summarySlot = document.querySelector('#order-summary');
-  const confirmationSlot = document.querySelector('#order-confirmation');
+/* 1️⃣ Form + Summary */
+const formComp = CheckoutForm();
+formSlot.appendChild(formComp);
+summarySlot.appendChild(OrderSummary());
 
-  if (formSlot) formSlot.appendChild(CheckoutForm());
-  if (summarySlot) summarySlot.appendChild(OrderSummary());
+/* 2️⃣ Form submit */
+const formEl = formComp.querySelector('form');
+formEl.addEventListener('submit', e => {
+  e.preventDefault();
 
-  // Optional — show only after checkout
-  const fakeOrder = {
-    items: [
-      {
-        name: 'XX99 MK II',
-        price: 2999,
-        quantity: 1,
-        image: 'images/xx99-mark-two.jpg'
-      }
-    ],
-    total: 2999
-  };
-  if (confirmationSlot) confirmationSlot.appendChild(OrderConfirmation(fakeOrder));
+  if (!validateForm(formEl)) return;
+
+  const { items, total } = getState();
+  if (items.length === 0) {
+    alert('Your cart is empty.');
+    return;
+  }
+
+  /* build modal & show overlay */
+  overlay.innerHTML = '';
+  overlay.appendChild(OrderConfirmation({ items, total }));
+  overlay.classList.add('is-visible');   // CSS fades it in (opaque backdrop)
+
+  clearCart();
+});
+
+/* optional: click outside to close */
+overlay.addEventListener('click', e => {
+  if (e.target === overlay) overlay.classList.remove('is-visible');
 });

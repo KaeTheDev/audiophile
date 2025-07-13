@@ -1,36 +1,56 @@
-export function createTextField({ id, label, placeholder = '' }) {
-    const wrapper = document.createElement('div');
-    wrapper.className = 'form-field form-field--text';
-  
-    const fieldLabel = document.createElement('label');
-    fieldLabel.className = 'form-field__label';
-    fieldLabel.setAttribute('for', id);
-    fieldLabel.textContent = label;
-  
-    const input = document.createElement('input');
-    input.className = 'form-field__input';
-    input.type = 'text';
-    input.id = id;
-    input.placeholder = placeholder;
-  
-    // State: Add/remove .is-active on focus/blur
-    input.addEventListener('focus', () => {
-      wrapper.classList.add('is-active');
-    });
-    input.addEventListener('blur', () => {
-      wrapper.classList.remove('is-active');
-    });
-  
-    wrapper.appendChild(fieldLabel);
-    wrapper.appendChild(input);
-  
-    // Helper method to toggle error state
-    wrapper.setError = function (hasError) {
-      wrapper.classList.toggle('has-error', hasError);
-    };
-  
-    return wrapper;
-  }  
+export function createTextField({
+  id,
+  label,
+  placeholder = '',
+  required = false,
+  type = 'text',
+}) {
+  /* wrapper preserves your original classes */
+  const wrapper = document.createElement('div');
+  wrapper.className = 'form-field form-field--text';
+
+  /* label (unchanged) */
+  const fieldLabel = document.createElement('label');
+  fieldLabel.className = 'form-field__label';
+  fieldLabel.setAttribute('for', id);
+  fieldLabel.textContent = label;
+
+  /* input (unchanged classes, but now configurable) */
+  const input = document.createElement('input');
+  input.className   = 'form-field__input';
+  input.type        = type;
+  input.id          = id;
+  input.name        = id;
+  input.placeholder = placeholder;
+  input.required    = required;
+
+  /* focus ring */
+  input.addEventListener('focus', () => wrapper.classList.add('is-active'));
+  input.addEventListener('blur',  () => wrapper.classList.remove('is-active'));
+
+  /* inline error message */
+  const msg = document.createElement('span');
+  msg.className = 'form-field__error';
+  msg.style.cssText = 'display:none; color:var(--error-color); font-size:0.75rem;';
+
+  /* validate helper */
+  function validate() {
+    const valid = input.checkValidity();
+    wrapper.classList.toggle('has-error', !valid);
+    msg.textContent = valid ? '' : input.validationMessage;
+    msg.style.display = valid ? 'none' : 'block';
+    return valid;
+  }
+  input.addEventListener('input', validate);
+  input.addEventListener('blur',  validate);
+
+  wrapper.append(fieldLabel, input, msg);
+
+  /* expose error toggle for external helpers if needed */
+  wrapper.setError = hasErr => wrapper.classList.toggle('has-error', hasErr);
+
+  return wrapper;
+}
 
 export function createRadioGroup({ name, legend = '', options = [] }) {
   // Use fieldset for semantic grouping
