@@ -1,14 +1,22 @@
 import './scss/styles.scss';
-import { Navbar }              from './components/navbar/navbar.js';          // ✅
+import { Navbar }              from './components/navbar/navbar.js';          
 import { CheckoutForm }        from './components/checkout/checkout-form.js';
 import { OrderSummary }        from './components/checkout/order-summary.js';
 import { OrderConfirmation }   from './components/checkout/order-confirmation.js';
+import { CartModal } from './components/cart-modal/cart-modal.js';
 import { getState, clearCart } from './store/cartStore.js';
 import { validateForm }        from './utils/validateForm.js';
 
 /* ---------- Mount Navbar ---------- */
 const appRoot = document.querySelector('#app');       // #app exists in checkout.html
-if (appRoot) appRoot.appendChild(Navbar());           // ✅ now the nav shows
+
+if (appRoot) {
+  appRoot.append(Navbar(), CartModal());   // note: append vs prepend fine here
+  document.querySelector('#cart-toggle')
+    ?.addEventListener('click', () =>
+      document.querySelector('#cart-modal')?.classList.toggle('is-visible')
+    );
+}
 
 /* ---------- DOM slots ---------- */
 const formSlot    = document.querySelector('#checkout-form');
