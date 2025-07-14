@@ -1,4 +1,4 @@
-import{c as r}from"./button-DLeOthyl.js";function o(e){const c=document.createElement("article");c.className="product-card",c.innerHTML=`
+import{c as r}from"./button-DmJ7t0La.js";function o(e){const c=document.createElement("article");c.className="product-card",c.innerHTML=`
     ${e.isNew?'<p class="product-card__overline">New Product</p>':""}
     <img src="${e.image}" alt="${e.name}" class="product-card__image" />
     <div class="product-card__content">
