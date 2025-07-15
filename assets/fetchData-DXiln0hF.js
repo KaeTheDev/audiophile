@@ -1,4 +1,4 @@
-import{N as r,C as c,c as l,d}from"./cart-modal-CA9AiMWk.js";function u(){const e=document.createElement("footer");return e.className="footer",e.innerHTML=`
+import{N as r,C as c,c as l,d}from"./cart-modal-pHg7tIKt.js";function u(){const e=document.createElement("footer");return e.className="footer",e.innerHTML=`
       <div class="footer__container">
         <a href="./" class="footer__logo">audiophile</a>
   
