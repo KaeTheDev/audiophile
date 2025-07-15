@@ -44,7 +44,7 @@
 
 @mixin heading-5 {
     font-family: $font-family;
-    font-weight: 700;
+    font-weight: 700; // bold
     font-size: 1.5rem;
     line-height: 2.0625rem;
     letter-spacing: 0.10625rem;
@@ -64,7 +64,7 @@
 
 @mixin body-text {
     font-family: $font-family;
-    font-weight: 500;
+    font-weight: 500; // medium
     font-size: 0.9375rem;
     line-height: 1.5625rem;
     letter-spacing: 0rem;
@@ -73,7 +73,7 @@
 
 @mixin overline-text {
     font-family: $font-family;
-    font-weight: 400;
+    font-weight: 400; // regular
     font-size: 0.875rem;
     line-height: 1.1875rem;
     letter-spacing: 0.625rem;
@@ -89,6 +89,16 @@
     color: $tangelo-hex;
 }
 
+@mixin nav-link-text {
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: 0.8125rem;
+    line-height: 1.5625rem;
+    letter-spacing: 0.0625rem;
+    text-transform: uppercase;
+    color: $white-hex;
+  }
+  
 // Buttons Mixin
 
 @mixin button-base {

@@ -1,42 +1,146 @@
+@use "../base/typography" as typo;
+@use "../abstracts/mixins" as mix;
+
 .navbar {
-    background: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  
-    &__container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-  
-    &__logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      text-transform: lowercase;
-      text-decoration: none;
-      color: #000;
-    }
-  
-    &__toggle {
-      display: none; // Enable in responsive styles
-    }
-  
-    &__links {
-      list-style: none;
-      display: flex;
-      gap: 2rem;
-  
-      li a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 500;
-      }
-    }
-  
-    &__cart {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
+  position: relative;
+  background-color: typo.$black-hex; // pure black background
+  color: typo.$white-hex; // default text/icon color
+  height: 96px; // from Figma
+  display: flex;
+  align-items: center;
+
+  /* 1110px inner row */
+  &__container {
+    max-width: 1110px;
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: clamp(1rem, 5vw, 3rem); // fluid side‑padding
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: clamp(1rem, 4vw, 2.5rem);
+    position: relative; // anchor divider
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -36px;  
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #979797;
+  }
+
+  &__logo img {
+    width: 143px; // exact width from Figma
+  }
+
+  /* nav links (desktop) */
+  &__links {
+    list-style: none;
+    display: flex;
+    gap: clamp(1.2rem, 3vw, 2.5rem);
+
+    li a {
+      @include mix.nav-link-text;
+
+      &:hover {
+        color: typo.$peru-hex;
+      } // accent color on hover
     }
   }
+
+  /* cart icon */
+  &__cart img {
+    width: 23px;
+    height: 20px;
+  }
+
+  /* mobile hamburger hidden by default */
+  &__toggle {
+    display: none;
+  }
+
+/* ---------- Mobile ONLY ≤ 768px ---------- */
+@media (max-width: 768px) {
+  height: 80px;
+
+  &__container {
+    position: relative;
+    justify-content: space-between;
+  }
+
+  &__toggle { display: block; order: 1; }
+
+  &__logo {
+    order: 2;
+    img { width: 100px; }
+  }
+
+  &__cart { order: 3; }
+
+  &__links {
+    display: none;
+    flex-direction: column;
+    align-items: center;      // center links horizontally
+    text-align: center;       // centers text inside <a>
+    background-color: typo.$black-hex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding-block: 2rem;      // vertical space inside the panel
+    z-index: 10;
+  
+    &.is-open {
+      display: flex;
+    }
+  }
+}  
+
+/* ---------- Tablet ONLY: 769–1023px ---------- */
+@media (min-width: 769px) and (max-width: 1023px) {
+  height: 80px;
+
+  &__container {
+    justify-content: flex-start;
+    position: relative;
+    gap: 0;
+  }
+
+  &__toggle {
+    display: block;
+    order: 1;
+    margin-right: 2.625rem; // 42px hamburger ➜ logo
+  }
+
+  &__logo {
+    order: 2;
+    img { width: 120px; }
+  }
+
+  &__cart {
+    order: 3;
+    margin-left: auto;
+  }
+
+  &__links {
+    display: none;
+    flex-direction: column;
+    align-items: center;      // center links horizontally
+    text-align: center;       // centers text inside <a>
+    background-color: typo.$black-hex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding-block: 2rem;      // vertical space inside the panel
+    z-index: 10;
+  
+    &.is-open {
+      display: flex;
+    }
+  }
+}  
+}
