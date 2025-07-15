@@ -1,4 +1,4 @@
-import{a as m,c as r,b as u,g as p}from"./cart-modal-d-UnPQCl.js";function g(t){const e=document.createElement("section");e.classList.add("product-detail"),e.innerHTML=`
+import{a as m,c as r,b as u,g as p}from"./cart-modal-CA9AiMWk.js";function g(t){const e=document.createElement("section");e.classList.add("product-detail"),e.innerHTML=`
     <div class="product-detail__image-container">
       <img
         src="${t.image}"
