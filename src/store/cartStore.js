@@ -1,28 +1,24 @@
-// src/store/cartStore.js
-// ======================================================
-// Central cart store  –  keeps data in memory, syncs to
-// localStorage, and notifies the UI via 'cart:updated'.
-// ======================================================
+// // src/store/cartStore.js
+// // ======================================================
+// // Central cart store  –  keeps data in memory, syncs to
+// // localStorage, and notifies the UI via 'cart:updated'.
+// // ======================================================
 
 const STORAGE_KEY = 'audiophile-cart';
 
-// ----------  state  ----------
+// Load cart state from localStorage or fallback
 let state = load();
 
-// Attach a live "total" getter so any code can read
-// getState().total and always get the latest subtotal.
+// Define total getter
 Object.defineProperty(state, 'total', {
   get() {
     return this.items.reduce((sum, i) => sum + i.price * i.qty, 0);
   },
 });
 
-// ----------  persistence helpers  ----------
 function load() {
   try {
-    return (
-      JSON.parse(localStorage.getItem(STORAGE_KEY)) || { items: [] }
-    );
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { items: [] };
   } catch {
     return { items: [] };
   }
@@ -30,16 +26,51 @@ function load() {
 
 function save() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  document.dispatchEvent(
-    new CustomEvent('cart:updated', { detail: state })
-  );
+  document.dispatchEvent(new CustomEvent('cart:updated', { detail: state }));
 }
 
-// ----------  public API  ----------
+// Use Vite base URL environment variable
+const base = import.meta.env.BASE_URL || '/';
+
+// Add or update cart item
 export function addItem(product, qty = 1) {
+  if (!product || !product.slug) {
+    console.warn('[cartStore] addItem received bad product:', product);
+    return;
+  }
+
+  // Resolve imageUrl string safely
+  let imageUrl = '';
+  if (typeof product.image === 'string') {
+    imageUrl = product.image;
+  } else if (typeof product.image === 'object' && product.image !== null) {
+    imageUrl = product.image.desktop || product.image.mobile || '';
+  }
+
+  // Compose cartImage path with base URL prefix
+  const cartImage =
+    product.cartImage ||
+    (imageUrl.startsWith('/assets')
+      ? `${base}${imageUrl.slice(1)}`  // remove leading slash from imageUrl then prepend base
+      : `${base}assets/cart/image-${product.slug}.jpg`);
+
+  // Find existing cart line
   const line = state.items.find(i => i.slug === product.slug);
-  if (line) line.qty += qty;
-  else state.items.push({ ...product, qty });
+
+  if (line) {
+    line.qty += qty;
+  } else {
+    // Save only needed product props plus cartImage and qty
+    state.items.push({ 
+      slug: product.slug,
+      name: product.name,
+      price: product.price,
+      cartImage,
+      image: imageUrl,
+      qty,
+    });
+  }
+
   save();
 }
 
@@ -61,5 +92,5 @@ export function clearCart() {
 }
 
 export function getState() {
-  return state; // contains .items and live .total getter
+  return state;
 }

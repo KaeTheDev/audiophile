@@ -1,3 +1,6 @@
+@use '../abstracts/mixins' as mix;
+
+
 .cart-modal__items {
     display: flex;
     flex-direction: column;
@@ -6,12 +9,12 @@
   
   .cart-item {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
   
     &__image {
-      width: 50px;
-      height: 50px;
+      width: 64px;
+      height: 64px;
       object-fit: cover;
       border-radius: 0.5rem;
     }
@@ -24,5 +27,12 @@
     &__name, &__price, &__quantity {
       font-size: 0.875rem;
       margin: 0;
+    }
+    &__name {
+      @include mix.cart-item__name;
+    }
+
+    &__price {
+      @include mix.cart-item__price;
     }
   }  

@@ -1,59 +1,80 @@
-.cart-modal {
-    display: none;
-    position: fixed;
-    top: 80px; // adjust based on Navbar height
-    right: 2rem;
-    width: 320px;
-    background: #fff;
-    padding: 2rem;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+@use "../base/typography" as typo;
+@use "../abstracts/mixins" as mix;
 
-    &.is-visible {
-      display: block;
+.cart-modal {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 2rem;
+  width: 377px;
+  background: typo.$white-hex;
+  padding: 2rem;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+
+  &.is-visible {
+    display: block;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+
+  &__title {
+    @include mix.heading-6;
+  }
+
+  &__remove-all {
+    background: none;
+    border: none;
+    color: typo.$gray-hex;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &:hover { color: typo.$tangelo-hex; }
+  }
+
+  &__items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-height: 220px;
+    overflow-y: auto;
+    margin-bottom: 2rem;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    span:first-child {
+      color: typo.$gray-hex;
+      font-size: 0.875rem;
+      letter-spacing: 0.0625rem;
+      text-transform: uppercase;
     }
-  
-    &__title {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-    }
-  
-    &__remove-all {
-      background: none;
-      border: none;
-      color: #888;
-      cursor: pointer;
-      margin-bottom: 1rem;
-    }
-  
-    &__item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-  
-      &__image {
-        width: 50px;
-        height: auto;
-        margin-right: 1rem;
-      }
-  
-      &__details {
-        flex: 1;
-      }
-  
-      &__quantity {
-        margin-left: 1rem;
-      }
-    }
-  
-    &__total {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      margin: 1rem 0;
-    }
-  
-    &__checkout {
-      width: 100%;
+
+    &-price {
+      font-size: 1.125rem;
+      font-weight: 700;
+      letter-spacing: 0.0625rem;
     }
   }
+
+  &__checkout {
+    width: 313px;
+    height: 48px;
+    margin-inline: auto;
+
+    button {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

@@ -98,7 +98,29 @@
     text-transform: uppercase;
     color: $white-hex;
   }
-  
+
+  // Cart Item
+
+@mixin cart-item__name {
+    @include body-text;
+    font-weight: 700;    // override weight to bold (body-text is 500)
+    color: $black-hex;   // ensure black color
+    text-transform: none; // override if any global uppercase
+    line-height: 1.563rem; // from your spec
+    letter-spacing: 0;   // override if body-text has spacing
+    font-size: 0.938rem; // explicitly set (close to 0.9375rem)
+}
+
+@mixin cart-item__price {
+    @include body-text; // base font-family and size
+    font-weight: 700; 
+    color: $gray-hex;  // or define $gray-hex if not already
+    font-size: 0.875rem;
+    line-height: 1.563rem;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
 // Buttons Mixin
 
 @mixin button-base {

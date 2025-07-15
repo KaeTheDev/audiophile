@@ -11,15 +11,20 @@ export function CartModal() {
     const { items, total } = getState();
 
     modal.innerHTML = `
-      <h2 class="cart-modal__title">Cart (${items.length})</h2>
-      <button class="cart-modal__remove-all">Remove All</button>
-      <div class="cart-modal__items"></div>
-      <div class="cart-modal__total">
-        <span>Total</span>
-        <span class="cart-modal__total-price">$${total.toLocaleString()}</span>
-      </div>
-      <div class="cart-modal__checkout"></div>
-    `;
+  <div class="cart-modal__header">
+    <h2 class="cart-modal__title">Cart (${items.length})</h2>
+    <button class="cart-modal__remove-all">Remove All</button>
+  </div>
+
+  <div class="cart-modal__items"></div>
+
+  <div class="cart-modal__total">
+    <span>Total</span>
+    <span class="cart-modal__total-price">$${total.toLocaleString()}</span>
+  </div>
+
+  <div class="cart-modal__checkout"></div>
+`;
 
     // Populate cart items
     const list = modal.querySelector('.cart-modal__items');
