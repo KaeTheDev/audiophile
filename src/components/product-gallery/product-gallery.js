@@ -8,21 +8,21 @@ export function ProductGallery(product) {
   // Generate responsive image sources
   const galleryImages = [
     {
-      mobile: `public/assets/${productSlug}/mobile/image-gallery-1.jpg`,
-      tablet: `public/assets/${productSlug}/tablet/image-gallery-1.jpg`,
-      desktop: `public/assets/${productSlug}/desktop/image-gallery-1.jpg`,
+      mobile: `/audiophile/assets/${productSlug}/mobile/image-gallery-1.jpg`,
+      tablet: `/audiophile/assets/${productSlug}/tablet/image-gallery-1.jpg`,
+      desktop: `/audiophile/assets/${productSlug}/desktop/image-gallery-1.jpg`,
       alt: `${product.name} gallery image 1`
     },
     {
-      mobile: `public/assets/${productSlug}/mobile/image-gallery-2.jpg`,
-      tablet: `public/assets/${productSlug}/tablet/image-gallery-2.jpg`,
-      desktop: `public/assets/${productSlug}/desktop/image-gallery-2.jpg`,
+      mobile: `/audiophile/assets/${productSlug}/mobile/image-gallery-2.jpg`,
+      tablet: `/audiophile/assets/${productSlug}/tablet/image-gallery-2.jpg`,
+      desktop: `/audiophile/assets/${productSlug}/desktop/image-gallery-2.jpg`,
       alt: `${product.name} gallery image 2`
     },
     {
-      mobile: `public/assets/${productSlug}/mobile/image-gallery-3.jpg`,
-      tablet: `public/assets/${productSlug}/tablet/image-gallery-3.jpg`,
-      desktop: `public/assets/${productSlug}/desktop/image-gallery-3.jpg`,
+      mobile: `/audiophile/assets/${productSlug}/mobile/image-gallery-3.jpg`,
+      tablet: `/audiophile/assets/${productSlug}/tablet/image-gallery-3.jpg`,
+      desktop: `/audiophile/assets/${productSlug}/desktop/image-gallery-3.jpg`,
       alt: `${product.name} gallery image 3`
     }
   ];
