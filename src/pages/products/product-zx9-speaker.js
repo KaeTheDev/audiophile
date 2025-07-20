@@ -1,6 +1,5 @@
 import { ProductDetail } from '../../components/product-detail/product-detail.js';
-import { ProductFeaturesText } from '../../components/product-features/product-features-text.js';
-import { ProductInTheBox } from '../../components/product-features/product-in-the-box.js';
+import { ProductSpecs } from '../../components/product-specs/product-specs.js';
 import { ProductGallery } from '../../components/product-gallery/product-gallery.js';
 import { ProductRecommendations } from '../../components/product-recommendations/product-recommendations.js';
 import { ProductCategories } from '../../components/product-categories/product-categories.js';
@@ -11,7 +10,7 @@ import { getSlugFromURL } from '../../utils/getSlugFromURL.js';
 document.addEventListener('DOMContentLoaded', () => {
   fetchProductData()
     .then(data => {
-      const slug = getSlugFromURL(); // returns 'yx1-earphones'
+      const slug = getSlugFromURL(); // returns 'zx9-speaker'
       const product = data.find(p => p.slug === slug);
 
       if (!product) {
@@ -21,8 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 🔧 Keep your original component logic
       document.querySelector('#product-detail')?.appendChild(ProductDetail(product));
-      document.querySelector('#features')?.appendChild(ProductFeaturesText(product));
-      document.querySelector('#in-the-box')?.appendChild(ProductInTheBox(product));
+      document.querySelector('#product-specs')?.appendChild(ProductSpecs(product));
       document.querySelector('#gallery')?.appendChild(ProductGallery(product));
       document.querySelector('#recommendations')?.appendChild(ProductRecommendations(product));
 

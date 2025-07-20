@@ -11,7 +11,6 @@
   overflow: hidden;
   width: 100%;
 
-  /* image on the right (desktop) */
   &__image-wrapper {
     position: relative;
     width: 100%;
@@ -33,7 +32,6 @@
     border-radius: 16px;
   }
 
-  /* text column (desktop) */
   &__content {
     position: absolute;
     left: 8vw;
@@ -51,6 +49,7 @@
       width: fit-content;
     }
   }
+
   &__overline {
     @include mix.hero-overline;
   }
@@ -60,10 +59,9 @@
   }
 
   &__description {
-    @include mix.hero-description
+    @include mix.hero-description;
   }
 
-  /* ───────── Tablet (769 – 1023 px) ───────── */
   @media (max-width: 900px) {
     min-height: 420px;
 
@@ -98,7 +96,6 @@
     }
   }
 
-  /* ───────── Mobile (≤ 768 px) ───────── */
   @media (max-width: 600px) {
     min-height: 250px;
 

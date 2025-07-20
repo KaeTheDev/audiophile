@@ -1,50 +1,164 @@
+@use "../base/typography" as typo;
+@use "../abstracts/mixins" as mix;
+
+.category-hero {
+  background-color: typo.$chinese-black-hex;
+  color: typo.$white-hex;
+  text-align: center;
+  padding: 6rem 0;
+  margin-bottom: 4rem;
+  
+  &__content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  &__title {
+    @include mix.heading-2;
+    color: typo.$white-hex;
+    letter-spacing: 0.089rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+    
+    &__title {
+      font-size: 1.75rem;
+    }
+  }
+}
+
+// Updated Product Card with proper ZigZag Layout
 .product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  gap: 2rem;
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 2rem;
+
+  // Desktop zigzag layout
+  @media (min-width: 1025px) {
+    flex-direction: row;
+    align-items: center;
+    gap: 8rem;
+    margin-bottom: 10rem;
+    text-align: left;
+    padding: 0 2rem;
+  }
+
+  // Reverse layout for zigzag pattern
+  &--reverse {
+    @media (min-width: 1025px) {
+      flex-direction: row-reverse;
+      
+      .product-card__content {
+        text-align: left;
+      }
+    }
+  }
+
+  &__image-container {
+    width: 100%;
+    position: relative;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%);
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    
+    @media (min-width: 1025px) {
+      flex: 1;
+      min-height: 500px;
+      max-width: 540px;
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      min-height: 400px;
+    }
+    
+    @media (max-width: 768px) {
+      min-height: 250px;
+    }
+  }
+
+  &__picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   &__image {
     width: 100%;
-    max-width: 300px;
-    border-radius: 0.75rem;
+    height: 100%;
+    object-fit: cover;
+    
+    @media (min-width: 1025px) {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
   }
 
   &__content {
-    padding: 0 1rem;
+    width: 100%;
+    
+    @media (min-width: 1025px) {
+      flex: 1;
+      max-width: 445px;
+      text-align: left;
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      max-width: 572px;
+      margin: 0 auto;
+    }
   }
 
   &__overline {
-    color: #d87d4a;
+    @include mix.overline-text;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
+    
+    @media (min-width: 1025px) {
+      margin-bottom: 1rem;
+      letter-spacing: 10px;
+    }
   }
 
   &__name {
-    font-size: 1.75rem;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+    @include mix.heading-2;
+    letter-spacing: 0.089rem;
+    margin-bottom: 32px;
+    
+    @media (min-width: 1025px) {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      letter-spacing: 1.5px;
+    }
+    
+    @media (min-width: 769px) and (max-width: 1024px) {
+      font-size: 2.5rem;
+    }
   }
 
   &__desc {
-    font-size: 1rem;
-    color: #777;
-    margin-bottom: 1.5rem;
-  }
-
-  &__button {
-    background-color: #d87d4a;
-    color: #fff;
-    border: none;
-    padding: 1rem 2rem;
-    text-transform: uppercase;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #fbaf85;
+    @include mix.body-text;
+    color: typo.$gray-hex;
+    margin-bottom: 24px;
+    
+    @media (min-width: 1025px) {
+      margin-bottom: 2.5rem;
+      font-size: 0.9375rem;
     }
   }
 }

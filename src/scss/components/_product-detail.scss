@@ -1,109 +1,118 @@
+@use "../base/typography" as typo;
+@use "../abstracts/mixins" as mix;
+
+.product-detail-container {
+  padding: 2rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  @media (min-width: 768px) {
+    padding: 3rem 2rem;
+  }
+  
+  @media (min-width: 1024px) {
+    padding: 4rem 2rem;
+  }
+}
+
+// Main Product Detail Styles
 .product-detail {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  margin-bottom: 4rem;
-  text-align: center;
-
+  text-align: left; // Left-aligned on mobile
+  
   @media (min-width: 768px) {
     flex-direction: row;
     text-align: left;
     gap: 4rem;
+    align-items: center;
+  }
+  
+  @media (min-width: 1024px) {
+    gap: 6rem;
   }
 
   &__image-container {
     width: 100%;
     max-width: 500px;
-
-    img {
+    flex-shrink: 0;
+    
+    @media (min-width: 768px) {
+      max-width: 400px;
+    }
+    
+    @media (min-width: 1024px) {
+      max-width: 540px;
+    }
+    
+    picture, img {
       width: 100%;
       border-radius: 1rem;
+      display: block;
     }
   }
 
   &__info {
     max-width: 600px;
+    flex: 1;
+    
+    @media (min-width: 768px) {
+      max-width: none;
+    }
   }
 
   &__new {
-    color: #d87d4a;
+    @include mix.overline-text;
     text-transform: uppercase;
-    letter-spacing: 10px;
     margin-bottom: 1rem;
+    
+    @media (min-width: 768px) {
+      margin-bottom: 1.5rem;
+    }
   }
 
   &__name {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
+    @include mix.heading-4;
+    margin-bottom: 1.5rem;
+    
+    @media (min-width: 768px) {
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+    }
   }
 
   &__desc {
-    color: #777;
-    font-size: 1rem;
+    @include mix.body-text;
+    color: typo.$gray-hex;
     margin-bottom: 1.5rem;
+    
+    @media (min-width: 768px) {
+      margin-bottom: 2rem;
+    }
   }
 
   &__price {
-    font-size: 1.25rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
+    @include mix.heading-6;
+    margin-bottom: 2rem;
+
+    
+    @media (min-width: 768px) {
+      margin-bottom: 2.5rem;
+    }
   }
 
   &__actions {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 1rem;
-    align-items: center;
-  }
-}
-
-// Quantity Selector
-.quantity-selector {
-  display: flex;
-  align-items: center;
-  background-color: #f1f1f1;
-  padding: 0.75rem 1rem;
-  gap: 1.5rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 0.875rem;
-  letter-spacing: 1px;
-
-  &__btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 1.25rem;
-    font-weight: bold;
-    color: #000;
-
-    &:hover {
-      color: #d87d4a;
+    align-items: stretch;
+    
+    @media (min-width: 480px) {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
     }
-  }
-
-  &__value {
-    min-width: 1.5rem;
-    text-align: center;
-  }
-}
-
-// Add to Cart Button
-.add-to-cart-button {
-  background-color: #d87d4a;
-  color: white;
-  border: none;
-  padding: 0.75rem 2rem;
-  font-size: 0.875rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #fbaf85;
   }
 }
