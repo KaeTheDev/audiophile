@@ -17,7 +17,7 @@ export function ProductDetail(product) {
   
   // Generate responsive image sources
   const getProductImageSrc = (breakpoint) => {
-    return `public/assets/product-${product.slug}/${breakpoint}/image-product.jpg`;
+    return `/audiophile/assets/product-${product.slug}/${breakpoint}/image-product.jpg`;
   };
   
   section.innerHTML = `
