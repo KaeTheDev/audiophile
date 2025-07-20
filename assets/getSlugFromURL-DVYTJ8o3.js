@@ -1,4 +1,4 @@
-import{a as p,c as r,b as m,g as u}from"./cart-modal-e94tEmip.js";function g(){const e=document.createElement("button");return e.className="go-back-button",e.textContent="Go Back",e.addEventListener("click",()=>{window.history.back()}),e}function b(e){const t=document.createElement("div");t.classList.add("product-detail-container");const a=g(),c=document.createElement("section");c.classList.add("product-detail");const s=l=>`public/assets/product-${e.slug}/${l}/image-product.jpg`;c.innerHTML=`
+import{a as p,c as r,b as m,g as u}from"./cart-modal-e94tEmip.js";function g(){const e=document.createElement("button");return e.className="go-back-button",e.textContent="Go Back",e.addEventListener("click",()=>{window.history.back()}),e}function b(e){const t=document.createElement("div");t.classList.add("product-detail-container");const a=g(),c=document.createElement("section");c.classList.add("product-detail");const s=l=>`/audiophile/assets/product-${e.slug}/${l}/image-product.jpg`;c.innerHTML=`
     <div class="product-detail__image-container">
       <picture>
         <source media="(min-width: 1024px)" srcset="${s("desktop")}">
