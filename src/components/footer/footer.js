@@ -4,7 +4,7 @@ export function Footer() {
   footer.innerHTML = `
     <div class="footer__container">
       <a href="./" class="footer__logo">
-        <img src="public/assets/shared/desktop/logo.svg" alt="Audiophile" />
+        <img src="/audiophile/assets/shared/desktop/logo.svg" alt="Audiophile" />
       </a>
       <nav class="footer__nav">
         <a href="./" class="footer__nav-link">HOME</a>
@@ -20,13 +20,13 @@ export function Footer() {
       </p>
       <div class="footer__social">
         <a href="#" class="footer__social-link">
-          <img src="public/assets/shared/desktop/icon-facebook.svg" alt="Facebook" />
+          <img src="/audiophile/assets/shared/desktop/icon-facebook.svg" alt="Facebook" />
         </a>
         <a href="#" class="footer__social-link">
-          <img src="public/assets/shared/desktop/icon-twitter.svg" alt="Twitter" />
+          <img src="/audiophile/assets/shared/desktop/icon-twitter.svg" alt="Twitter" />
         </a>
         <a href="#" class="footer__social-link">
-          <img src="public/assets/shared/desktop/icon-instagram.svg" alt="Instagram" />
+          <img src="/audiophile/assets/shared/desktop/icon-instagram.svg" alt="Instagram" />
         </a>
       </div>
     </div>
