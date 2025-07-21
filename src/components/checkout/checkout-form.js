@@ -2,11 +2,17 @@ import { createTextField } from '../form-elements/form-elements.js';
 import { createRadioGroup } from '../form-elements/form-elements.js';
 import { getState, clearCart } from '../../store/cartStore.js';
 import { OrderConfirmation } from '../checkout/order-confirmation.js';
+import { GoBackButton } from '../back-btn/back-btn.js';
+
 
 export function CheckoutForm() {
   const section = document.createElement('section');
   section.className = 'checkout-form';
   section.id = 'checkout-form';
+
+  const goBackButton = GoBackButton();
+section.appendChild(goBackButton); // ⬅️ Add this before the title
+
 
   // -- Title
   const title = document.createElement('h1');
