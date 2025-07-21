@@ -6,10 +6,7 @@ export function OrderSummary() {
   aside.className = 'order-summary';
   
   const render = () => {
-    const { items, total } = getState();
-    const shipping = 50;
-    const vat = total * 0.2;
-    const grandTotal = total + shipping;
+    const { items, total, vat, shipping, grandTotal } = getState();
     
     aside.innerHTML = `
       <h2 class="order-summary__title">Summary</h2>
@@ -28,7 +25,7 @@ export function OrderSummary() {
       <div class="order-summary__totals">
         <div><span>Total</span><span>$${total.toLocaleString()}</span></div>
         <div><span>Shipping</span><span>$${shipping}</span></div>
-        <div><span>VAT (Included)</span><span>$${vat.toFixed(0)}</span></div>
+        <div><span>VAT (Included)</span><span>$${vat.toFixed(1)}</span></div>
         <div class="order-summary__grand-total">
           <span class="order-summary__grand-total-label">Grand Total</span>
           <span class="order-summary__grand-total-amount">$${grandTotal.toLocaleString()}</span>
@@ -36,18 +33,32 @@ export function OrderSummary() {
       </div>
     `;
     
-    // ✅ Fixed: Trigger form submission instead of custom event
+    // ✅ Try multiple selectors to find the form
     const button = createButton({
       label: 'Continue & Pay',
       variant: 'primary',
-      type: 'button', // This triggers JS click — DO NOT use 'submit' here
+      type: 'button',
     });
     
     button.addEventListener('click', () => {
-      const checkoutForm = document.querySelector('#checkout-form form');
+      // Try different ways to find the form
+      let checkoutForm = document.querySelector('#checkout-form form') || 
+                        document.querySelector('.checkout-form form') || 
+                        document.querySelector('form');
+      
       if (checkoutForm) {
+        console.log('Found form, triggering submit');
+        
+        // Option 1: Try dispatching submit event
         const submitEvent = new Event('submit', { bubbles: true, cancelable: true });
         checkoutForm.dispatchEvent(submitEvent);
+      } else {
+        console.error('Could not find checkout form. Available forms:', document.querySelectorAll('form'));
+        
+        // Option 2: Fallback - trigger a custom event that your main app can listen for
+        document.dispatchEvent(new CustomEvent('checkout:submit', { 
+          detail: { orderData: getState() } 
+        }));
       }
     });
     

@@ -1,9 +1,12 @@
 import { createTextField } from '../form-elements/form-elements.js';
 import { createRadioGroup } from '../form-elements/form-elements.js';
+import { getState, clearCart } from '../../store/cartStore.js';
+import { OrderConfirmation } from '../checkout/order-confirmation.js';
 
 export function CheckoutForm() {
   const section = document.createElement('section');
   section.className = 'checkout-form';
+  section.id = 'checkout-form';
 
   // -- Title
   const title = document.createElement('h1');
@@ -136,5 +139,116 @@ export function CheckoutForm() {
   // Add event listeners
   [eMoneyRadio, codRadio].forEach(r => r.addEventListener('change', togglePaymentMethod));
 
+  /* === FORM SUBMISSION HANDLER === */
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    console.log('Form submitted!');
+    
+    // Validate form
+    if (!form.checkValidity()) {
+      console.log('Form validation failed');
+      form.reportValidity();
+      return;
+    }
+    
+    // Get form data
+    const formData = new FormData(form);
+    const cartState = getState();
+    
+    // Debug: Log cart state to see what's available
+    console.log('Cart state:', cartState);
+    
+    // Create order data with proper fallbacks and ensure grandTotal exists
+    const orderData = {
+      items: cartState.items || [],
+      subtotal: cartState.subtotal || cartState.total || 0,
+      total: cartState.total || cartState.subtotal || 0,
+      vat: cartState.vat || 0,
+      shipping: cartState.shipping || 0,
+      // Ensure grandTotal is always defined
+      grandTotal: cartState.grandTotal || cartState.total || cartState.subtotal || 0,
+      customerInfo: {
+        name: formData.get('name') || '',
+        email: formData.get('email') || '',
+        phone: formData.get('phone') || '',
+        address: formData.get('address') || '',
+        zip: formData.get('zip') || '',
+        city: formData.get('city') || '',
+        country: formData.get('country') || '',
+        paymentMethod: formData.get('payment-method') || '',
+        eMoneyNumber: formData.get('e-money-number') || '',
+        eMoneyPin: formData.get('e-money-pin') || '',
+      }
+    };
+    
+    console.log('Order data being passed:', orderData);
+    
+    // Show order confirmation and pass a callback to clear cart when user dismisses it
+    showOrderConfirmation(orderData, () => {
+      clearCart();
+    });
+  });
+
+  // Also listen for custom event as fallback
+  document.addEventListener('checkout:submit', (e) => {
+    console.log('Custom checkout submit event received');
+    form.dispatchEvent(new Event('submit'));
+  });
+
   return section;
+}
+
+// Function to show order confirmation as modal/overlay
+function showOrderConfirmation(orderData, onDismiss) {
+  // Remove any existing modals first
+  const existingModal = document.querySelector('.order-confirmation-overlay');
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Create the modal structure that matches your CSS
+  const modalOverlay = document.createElement('div');
+  modalOverlay.className = 'checkout-page'; // Add checkout-page class for CSS scoping
+  
+  const overlay = document.createElement('div');
+  overlay.className = 'order-confirmation-overlay is-visible'; // Use your existing CSS classes
+  
+  // Function to close modal and trigger callback
+  const closeModal = () => {
+    document.body.style.overflow = '';
+    modalOverlay.remove();
+    if (onDismiss) onDismiss(); // Clear cart when modal is dismissed
+  };
+  
+  // Get the confirmation component
+  const confirmation = OrderConfirmation(orderData, closeModal);
+  
+  overlay.appendChild(confirmation);
+  modalOverlay.appendChild(overlay);
+  document.body.appendChild(modalOverlay);
+  
+  // Close modal when clicking overlay (but not the content)
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) {
+      closeModal();
+    }
+  });
+  
+  // Close modal on Escape key
+  const handleEscape = (e) => {
+    if (e.key === 'Escape') {
+      closeModal();
+      document.removeEventListener('keydown', handleEscape);
+    }
+  };
+  document.addEventListener('keydown', handleEscape);
+  
+  // Prevent body scrolling while modal is open
+  document.body.style.overflow = 'hidden';
+  
+  // Dispatch event for other parts of the app
+  document.dispatchEvent(new CustomEvent('order:confirmed', { 
+    detail: orderData 
+  }));
 }

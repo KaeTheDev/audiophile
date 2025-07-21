@@ -1,18 +1,44 @@
-// // src/store/cartStore.js
-// // ======================================================
-// // Central cart store  –  keeps data in memory, syncs to
-// // localStorage, and notifies the UI via 'cart:updated'.
-// // ======================================================
+// src/store/cartStore.js
+// ======================================================
+// Central cart store – keeps data in memory, syncs to
+// localStorage, and notifies the UI via 'cart:updated'.
+// ======================================================
 
 const STORAGE_KEY = 'audiophile-cart';
 
 // Load cart state from localStorage or fallback
 let state = load();
 
-// Define total getter
-Object.defineProperty(state, 'total', {
+// Totals and calculations
+Object.defineProperty(state, 'subtotal', {
   get() {
     return this.items.reduce((sum, i) => sum + i.price * i.qty, 0);
+  },
+});
+
+Object.defineProperty(state, 'vat', {
+  get() {
+    return this.subtotal * 0.2;   // 20% VAT
+  },
+});
+
+Object.defineProperty(state, 'shipping', {
+  get() {
+    // Only charge shipping if cart contains items
+    return this.subtotal > 0 ? 50 : 0;
+  },
+});
+
+Object.defineProperty(state, 'grandTotal', {
+  get() {
+    return this.subtotal + this.vat + this.shipping;
+  },
+});
+
+// Optionally keep your old `total` (subtotal) property for compatibility
+Object.defineProperty(state, 'total', {
+  get() {
+    return this.subtotal;
   },
 });
 
