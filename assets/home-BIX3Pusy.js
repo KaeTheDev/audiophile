@@ -1,4 +1,4 @@
-import{c as i}from"./footer-DBmFDwpy.js";import{f as l,P as p,A as u}from"./fetchData-DWeKLKuF.js";function m(){const e=document.createElement("section");e.className="hero",e.innerHTML=`
+import{c as i}from"./footer-rnHte5mL.js";import{f as l,P as p,A as u}from"./fetchData-Ch-ojHh7.js";function m(){const e=document.createElement("section");e.className="hero",e.innerHTML=`
     <div class="hero__content">
       <p class="hero__overline">New Product</p>
       <h1 class="hero__title">XX99 Mark II Headphones</h1>
