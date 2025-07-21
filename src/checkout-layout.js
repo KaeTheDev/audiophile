@@ -1,28 +1,40 @@
 import './scss/styles.scss';
-import { Navbar }              from './components/navbar/navbar.js';          
-import { CheckoutForm }        from './components/checkout/checkout-form.js';
-import { OrderSummary }        from './components/checkout/order-summary.js';
-import { OrderConfirmation }   from './components/checkout/order-confirmation.js';
+import { Navbar } from './components/navbar/navbar.js';          
+import { CheckoutForm } from './components/checkout/checkout-form.js';
+import { OrderSummary } from './components/checkout/order-summary.js';
+import { OrderConfirmation } from './components/checkout/order-confirmation.js';
 import { CartModal } from './components/cart-modal/cart-modal.js';
+import { Footer } from './components/footer/footer.js';
 import { getState, clearCart } from './store/cartStore.js';
-import { validateForm }        from './utils/validateForm.js';
+import { validateForm } from './utils/validateForm.js';
 
-/* ---------- Mount Navbar ---------- */
-const appRoot = document.querySelector('#app');       // #app exists in checkout.html
-
+/* ---------- Mount Navbar & Cart Modal ---------- */
+const appRoot = document.querySelector('#app');
 if (appRoot) {
-  appRoot.append(Navbar(), CartModal());   // note: append vs prepend fine here
+  appRoot.append(Navbar(), CartModal());
   document.querySelector('#cart-toggle')
     ?.addEventListener('click', () =>
       document.querySelector('#cart-modal')?.classList.toggle('is-visible')
     );
 }
 
-/* ---------- DOM slots ---------- */
+/* ---------- Mount Footer ---------- */
+const footerRoot = document.querySelector('#footer');
+if (footerRoot) {
+  footerRoot.appendChild(Footer());
+}
+
+/* ---------- Mount Form and Order Summary ---------- */
 const formSlot    = document.querySelector('#checkout-form');
 const summarySlot = document.querySelector('#order-summary');
 
-/* ---------- Overlay root for modal ---------- */
+const formComponent = CheckoutForm();
+const summaryComponent = OrderSummary();
+
+if (formSlot) formSlot.appendChild(formComponent);
+if (summarySlot) summarySlot.appendChild(summaryComponent);
+
+/* ---------- Set up Modal Overlay ---------- */
 let overlay = document.querySelector('#order-confirmation');
 if (!overlay) {
   overlay = document.createElement('div');
@@ -31,32 +43,29 @@ if (!overlay) {
   document.body.appendChild(overlay);
 }
 
-/* ---------- Mount Form + Summary ---------- */
-const formComp = CheckoutForm();
-formSlot.appendChild(formComp);
-summarySlot.appendChild(OrderSummary());
+/* ---------- Form Submit Handler ---------- */
+const formEl = formComponent.querySelector('form');
 
-/* ---------- Form submit handler ---------- */
-const formEl = formComp.querySelector('form');
-formEl.addEventListener('submit', e => {
-  e.preventDefault();
-  if (!validateForm(formEl)) return;
+if (formEl) {
+  formEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!validateForm(formEl)) return;
 
-  const { items, total } = getState();
-  if (items.length === 0) {
-    alert('Your cart is empty.');
-    return;
-  }
+    const { items, total } = getState();
+    if (items.length === 0) {
+      alert('Your cart is empty.');
+      return;
+    }
 
-  /* Build modal & show overlay */
-  overlay.innerHTML = '';
-  overlay.appendChild(OrderConfirmation({ items, total }));
-  overlay.classList.add('is-visible');
+    overlay.innerHTML = '';
+    overlay.appendChild(OrderConfirmation({ items, total }));
+    overlay.classList.add('is-visible');
 
-  clearCart();
-});
+    clearCart();
+  });
+}
 
-/* ---------- Optional: click backdrop to close ---------- */
-overlay.addEventListener('click', e => {
+/* ---------- Close Modal on Outside Click ---------- */
+overlay.addEventListener('click', (e) => {
   if (e.target === overlay) overlay.classList.remove('is-visible');
 });

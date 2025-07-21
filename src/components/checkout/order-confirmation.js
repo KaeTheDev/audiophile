@@ -5,7 +5,7 @@ export function OrderConfirmation(order) {
   div.className = 'order-confirmation';
 
   div.innerHTML = `
-    <img class="order-confirmation__icon" src="/assets/checkout/icon-order-confirmation.svg" alt="Order Confirmed" />
+    <img class="order-confirmation__icon" src="/audiophile/assets/checkout/icon-order-confirmation.svg" alt="Order Confirmed" />
     <h2 class="order-confirmation__title">Thank you for your order</h2>
     <p class="order-confirmation__message">You will receive an email confirmation shortly.</p>
 
