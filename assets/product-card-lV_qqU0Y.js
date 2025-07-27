@@ -1,4 +1,4 @@
-import{c as p}from"./footer-rnHte5mL.js";function u(e,t=0){const c=document.createElement("article"),o=t%2!==0;c.className=`product-card${o?" product-card--reverse":""}`;const a=`/audiophile/assets/product-${e.slug}`,s=`${a}/desktop/image-category-page-preview.jpg`,n=`${a}/tablet/image-category-page-preview.jpg`,i=`${a}/mobile/image-category-page-preview.jpg`;c.innerHTML=`
+import{c as p}from"./footer-BsYQgZI-.js";function u(e,t=0){const c=document.createElement("article"),o=t%2!==0;c.className=`product-card${o?" product-card--reverse":""}`;const a=`/audiophile/assets/product-${e.slug}`,s=`${a}/desktop/image-category-page-preview.jpg`,n=`${a}/tablet/image-category-page-preview.jpg`,i=`${a}/mobile/image-category-page-preview.jpg`;c.innerHTML=`
         <div class="product-card__image-container">
             <picture class="product-card__picture">
                 <source media="(min-width: 1025px)" srcset="${s}">

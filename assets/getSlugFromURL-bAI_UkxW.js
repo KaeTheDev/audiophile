@@ -1,4 +1,4 @@
-import{a as p,c as r,b as m,g as u}from"./footer-rnHte5mL.js";import{G as g}from"./back-btn-D-r1veg2.js";function y(e){const t=document.createElement("div");t.classList.add("product-detail-container");const a=g(),n=document.createElement("section");n.classList.add("product-detail");const s=l=>`/audiophile/assets/product-${e.slug}/${l}/image-product.jpg`;n.innerHTML=`
+import{a as p,c as r,b as m,g as u}from"./footer-BsYQgZI-.js";import{G as g}from"./back-btn-D-r1veg2.js";function y(e){const t=document.createElement("div");t.classList.add("product-detail-container");const a=g(),n=document.createElement("section");n.classList.add("product-detail");const s=l=>`/audiophile/assets/product-${e.slug}/${l}/image-product.jpg`;n.innerHTML=`
     <div class="product-detail__image-container">
       <picture>
         <source media="(min-width: 1024px)" srcset="${s("desktop")}">
