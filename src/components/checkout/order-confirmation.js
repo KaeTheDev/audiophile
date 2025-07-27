@@ -64,7 +64,7 @@ export function OrderConfirmation(order, onClose) {
     // Call the close callback first (this will clear the cart)
     if (onClose) onClose();
     // Then navigate to home
-    window.location.href = '/';
+    window.location.href = '/audiophile/';
   });
   div.querySelector('.order-confirmation__button-container').appendChild(button);
 
