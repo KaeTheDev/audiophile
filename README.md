@@ -37,15 +37,17 @@ Users should be able to:
 - See an order confirmation after checkout
 - **Bonus:** Preserve cart data using `localStorage`
 
----
+
 
 ### Screenshot
 
----<img width="1511" height="777" alt="Screenshot 2025-07-28 at 1 01 06 PM" src="https://github.com/user-attachments/assets/5d4f0e90-17ba-469d-8c83-99628f530383" />
+<img width="1511" height="777" alt="Screenshot 2025-07-28 at 1 01 06 PM" src="https://github.com/user-attachments/assets/5d4f0e90-17ba-469d-8c83-99628f530383" />
 
 <img width="991" height="806" alt="Screenshot 2025-07-28 at 1 01 50 PM" src="https://github.com/user-attachments/assets/dd8e00ec-693f-4948-bc8e-d0ed3fceafb8" />
 <img width="501" height="773" alt="Screenshot 2025-07-28 at 1 02 11 PM" src="https://github.com/user-attachments/assets/218e7acc-936e-46b0-8054-a74296015461" />
-----
+
+
+
 ## 🧠 My Process
 
 ### 🔧 Built With
