@@ -12,14 +12,17 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const data = await fetchProductData();
 
-  // 🔍 Pick one product per category to extract categoryImage
-  const categoryNames = ['headphones', 'speakers', 'earphones'];
-  const categories = categoryNames.map(cat => {
-    const item = data.find(product => product.category === cat);
+  // 🔍 Explicitly select one product per category for categoryImage
+  const categories = [
+    { name: 'Headphones', slug: 'xx99-mark-one-headphones', link: '/headphones.html' },
+    { name: 'Speakers', slug: 'zx9-speaker', link: '/speakers.html' },
+    { name: 'Earphones', slug: 'yx1-earphones', link: '/earphones.html' }
+  ].map(cat => {
+    const item = data.find(product => product.slug === cat.slug);
     return {
-      name: cat.charAt(0).toUpperCase() + cat.slice(1),
-      image: item.categoryImage,
-      link: `/${cat}.html`,
+      name: cat.name,
+      image: item.categoryImage, // ✅ use categoryImage for homepage display
+      link: cat.link,
     };
   });
 
