@@ -10,9 +10,9 @@
     },
     "category": "earphones",
     "categoryImage": {
-      "mobile": "./assets/product-yx1-earphones/mobile/image-category-page-preview.jpg",
-      "tablet": "./assets/product-yx1-earphones/tablet/image-category-page-preview.jpg",
-      "desktop": "./assets/product-yx1-earphones/desktop/image-category-page-preview.jpg"
+      "mobile": "./assets/product-yx1-earphones/mobile/image-category-page-preview.png",
+      "tablet": "./assets/product-yx1-earphones/tablet/image-category-page-preview.png",
+      "desktop": "./assets/product-yx1-earphones/desktop/image-category-page-preview.png"
     },
     "new": true,
     "price": 599,
@@ -182,9 +182,9 @@
     },
     "category": "headphones",
     "categoryImage": {
-      "mobile": "./assets/product-xx99-mark-one-headphones/mobile/image-category-page-preview.jpg",
-      "tablet": "./assets/product-xx99-mark-one-headphones/tablet/image-category-page-preview.jpg",
-      "desktop": "./assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.jpg"
+      "mobile": "./assets/product-xx99-mark-one-headphones/mobile/image-category-page-preview.png",
+      "tablet": "./assets/product-xx99-mark-one-headphones/tablet/image-category-page-preview.png",
+      "desktop": "./assets/product-xx99-mark-one-headphones/desktop/image-category-page-preview.png"
     },
     "new": false,
     "price": 1750,
@@ -442,9 +442,9 @@
     },
     "category": "speakers",
     "categoryImage": {
-      "mobile": "./assets/product-zx9-speaker/mobile/image-category-page-preview.jpg",
-      "tablet": "./assets/product-zx9-speaker/tablet/image-category-page-preview.jpg",
-      "desktop": "./assets/product-zx9-speaker/desktop/image-category-page-preview.jpg"
+      "mobile": "./assets/product-zx9-speaker/mobile/image-category-page-preview.png",
+      "tablet": "./assets/product-zx9-speaker/tablet/image-category-page-preview.png",
+      "desktop": "./assets/product-zx9-speaker/desktop/image-category-page-preview.png"
     },
     "new": true,
     "price": 4500,
