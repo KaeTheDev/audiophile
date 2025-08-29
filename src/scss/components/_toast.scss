@@ -1,0 +1,30 @@
+@use "../base/typography" as typo;
+@use "../abstracts/mixins" as mix;
+@use '../abstracts/variables' as vars;
+
+.toast {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: typo.$peru-hex;               // primary highlight color
+    color: typo.$flash-white-hex;             // white text
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-family: vars.$font-family;           // site’s font
+    font-size: 0.875rem;                 // readable but not huge
+    text-transform: uppercase;           // match site’s buttons & labels
+    letter-spacing: 0.0625rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 16px rgba(typo.$black-rgb, 0.25); // subtle shadow for depth
+  
+    &.is-visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0);
+    }
+  }  
