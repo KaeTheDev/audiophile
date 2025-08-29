@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const app = document.querySelector('#app');
   const footerContainer = document.querySelector('#footer');
 
-  // Navbar & Cart
+  // Create Navbar and Cart Modal
   const navbar = Navbar();
   const cartModal = CartModal();
 
@@ -21,22 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
   // Helper to show toast messages
   const showToast = (message) => toast.show(message);
 
-  // Listen for cart updates globally
-  document.addEventListener('cart:updated', (e) => {
-    const state = e.detail;
-    const lastItem = state.items[state.items.length - 1];
-    if (lastItem) {
-      const totalQty = state.items.reduce((sum, i) => sum + i.qty, 0);
-      showToast(
-        `Added ${lastItem.qty} × ${lastItem.name}! You now have ${totalQty} item${totalQty !== 1 ? 's' : ''}.`
-      );
-    }
+  // Toggle cart modal manually (clicking the cart icon)
+  const cartToggleBtn = document.querySelector('#cart-toggle');
+  cartToggleBtn?.addEventListener('click', () => {
+    const cartModalEl = document.querySelector('#cart-modal');
+    cartModalEl?.classList.toggle('is-visible');
   });
 
-  // Cart toggle
-  document
-    .querySelector('#cart-toggle')
-    ?.addEventListener('click', () =>
-      document.querySelector('#cart-modal')?.classList.toggle('is-visible')
+  // Listen for items added to the cart
+  document.addEventListener('cart:itemAdded', (e) => {
+    const { product, qty, items } = e.detail;
+
+    // Show toast
+    const totalQty = items.reduce((sum, i) => sum + i.qty, 0);
+    showToast(
+      `Added ${qty} × ${product.name}! You now have ${totalQty} item${totalQty !== 1 ? 's' : ''}.`
     );
+
+    // Open the cart modal
+    const cartModalEl = document.querySelector('#cart-modal');
+    if (cartModalEl) cartModalEl.classList.add('is-visible');
+
+    // Optional: auto-close after 4 seconds
+    setTimeout(() => cartModalEl?.classList.remove('is-visible'), 2500);
+  });
 });

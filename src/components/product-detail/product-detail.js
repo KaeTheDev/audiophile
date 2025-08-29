@@ -66,7 +66,6 @@ export function ProductDetail(product) {
   addBtn.addEventListener('click', () => {
     const qty = numberPicker.getValue();
     addItem(product, qty); // << pushes to store
-    console.log(`🛒 Added ${qty} × ${product.name}`, getState());
   });
 
   section
