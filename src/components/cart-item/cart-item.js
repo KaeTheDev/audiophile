@@ -14,13 +14,19 @@ export function CartItem({ slug, name, price, qty, image }) {
     </div>
   `;
 
-  // quantity picker
+  // quantity picker (now allows 0)
   const picker = createNumberPicker({
     id: `qty-${slug}`,
     initial: qty,
-    min: 1,
+    min: 0,
     max: 10,
-    onChange: newQty => updateQty(slug, newQty),
+    onChange: newQty => {
+      if (newQty === 0) {
+        removeItem(slug);
+      } else {
+        updateQty(slug, newQty);
+      }
+    },
   });
 
   const qtyWrap = document.createElement('div');
