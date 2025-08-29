@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mount toast
   const toast = Toast();
   document.body.appendChild(toast);
+  
 
   // Helper to show toast messages
   const showToast = (message) => toast.show(message);
