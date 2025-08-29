@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lastItem) {
       const totalQty = state.items.reduce((sum, i) => sum + i.qty, 0);
       showToast(
-        `🛒 Added ${lastItem.qty} × ${lastItem.name}! You now have ${totalQty} item${totalQty !== 1 ? 's' : ''}.`
+        `Added ${lastItem.qty} × ${lastItem.name}! You now have ${totalQty} item${totalQty !== 1 ? 's' : ''}.`
       );
     }
   });

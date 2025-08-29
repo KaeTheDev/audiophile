@@ -7,14 +7,14 @@
     top: 1rem;
     left: 50%;
     transform: translateX(-50%) translateY(-10px);
-    background: typo.$peru-hex;               // primary highlight color
-    color: typo.$flash-white-hex;             // white text
+    background: typo.$peru-hex;               
+    color: typo.$flash-white-hex;             
     padding: 1rem 2rem;
     border-radius: 8px;
     font-weight: 700;
-    font-family: vars.$font-family;           // site’s font
-    font-size: 0.875rem;                 // readable but not huge
-    text-transform: uppercase;           // match site’s buttons & labels
+    font-family: vars.$font-family;           
+    font-size: 0.875rem;                      
+    text-transform: uppercase;                
     letter-spacing: 0.0625rem;
     opacity: 0;
     pointer-events: none;
@@ -25,6 +25,6 @@
     &.is-visible {
       opacity: 1;
       pointer-events: auto;
-      transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%) translateY(0); // slides into view
     }
-  }  
+}
