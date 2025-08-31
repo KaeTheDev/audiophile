@@ -2,7 +2,7 @@ import { createButton } from '../button/button.js';
 import { createNumberPicker } from '../form-elements/form-elements.js';
 import { GoBackButton } from '../back-btn/back-btn.js';
 // 🛒 bring in the cart API
-import { addItem, getState } from '../../store/cartStore.js'; // ← adjust dots if needed
+import { addItem } from '../../store/cartStore.js'; // ← adjust dots if needed
 
 export function ProductDetail(product) {
   const container = document.createElement('div');
