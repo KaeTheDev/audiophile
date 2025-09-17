@@ -1,4 +1,4 @@
-import{c as l}from"./footer-Byl1aG2U.js";function _(e,t=0){const c=document.createElement("article"),s=t%2!==0;c.className=`product-card${s?" product-card--reverse":""}`;const a=`/audiophile/assets/product-${e.slug}`,r=["xx99-mark-one-headphones","yx1-earphones","zx9-speaker"].includes(e.slug)?"png":"jpg",n=`${a}/desktop/image-category-page-preview.${r}`,i=`${a}/tablet/image-category-page-preview.${r}`,d=`${a}/mobile/image-category-page-preview.${r}`;c.innerHTML=`
+import{c as l}from"./footer-CQl-bO07.js";function _(e,t=0){const c=document.createElement("article"),s=t%2!==0;c.className=`product-card${s?" product-card--reverse":""}`;const a=`/audiophile/assets/product-${e.slug}`,r=["xx99-mark-one-headphones","yx1-earphones","zx9-speaker"].includes(e.slug)?"png":"jpg",n=`${a}/desktop/image-category-page-preview.${r}`,i=`${a}/tablet/image-category-page-preview.${r}`,d=`${a}/mobile/image-category-page-preview.${r}`;c.innerHTML=`
     <div class="product-card__image-container">
       <picture class="product-card__picture">
         <source media="(min-width: 1025px)" srcset="${n}">
