@@ -4,7 +4,7 @@ import{N as g,C as b,F as f,c as v,d as _}from"./footer-CQl-bO07.js";function w(
         <source media="(min-width: 768px)" srcset="${t.image.tablet}" />
         <img src="${t.image.mobile}" alt="${t.name}" class="categories__image" />
       </picture>
-    `;const r=document.createElement("h3");r.className="categories__name",r.textContent=t.name;const n="/audiophile/",c=document.createElement("a");c.href=`${n}${t.link}`,c.className="categories__link";const l=v({label:"Shop",variant:"link",icon:_});c.appendChild(l),s.appendChild(o),s.appendChild(i),s.appendChild(r),s.appendChild(c),a.appendChild(s)}),a}function x(){const e=document.createElement("section");return e.className="about",e.innerHTML=`
+    `;const r=document.createElement("h3");r.className="categories__name",r.textContent=t.name;const n="/audiophile/".replace(/\/$/,""),c=document.createElement("a");c.href=`${n}${t.link}`,c.className="categories__link";const l=v({label:"Shop",variant:"link",icon:_});c.appendChild(l),s.appendChild(o),s.appendChild(i),s.appendChild(r),s.appendChild(c),a.appendChild(s)}),a}function x(){const e=document.createElement("section");return e.className="about",e.innerHTML=`
     <div class="about__container">
       <div class="about__content">
         <h2 class="about__title">
